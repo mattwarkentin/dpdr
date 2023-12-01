@@ -11,7 +11,7 @@
 #' @return A `tibble`.
 #'
 #' @export
-dpd_active_id <- function(id) {
+dpd_ai_id <- function(id) {
   httr2::request(api_base_url()) |>
     httr2::req_url_path_append(glue::glue('activeingredient/?id={id}')) |>
     httr2::req_perform() |>
@@ -20,9 +20,9 @@ dpd_active_id <- function(id) {
     tibble::as_tibble()
 }
 
-#' @rdname dpd_active_id
+#' @rdname dpd_ai_id
 #' @export
-dpd_active_ingredient <- function(name) {
+dpd_ai_name <- function(name) {
   httr2::request(api_base_url()) |>
     httr2::req_url_path_append(glue::glue('activeingredient/?ingredientname={name}')) |>
     httr2::req_perform() |>
@@ -31,9 +31,9 @@ dpd_active_ingredient <- function(name) {
     tibble::as_tibble()
 }
 
-#' @rdname dpd_active_id
+#' @rdname dpd_ai_id
 #' @export
-dpd_active_all <- function() {
+dpd_ai_all <- function() {
   httr2::request(api_base_url()) |>
     httr2::req_url_path_append(glue::glue('activeingredient/')) |>
     httr2::req_perform() |>

@@ -68,7 +68,7 @@ dpd_drug_all <- function() {
 #' @rdname dpd_drug_id
 #' @export
 dpd_drug_dins <- function(name) {
-  drugs <- dpd_active_ingredient(name)
+  drugs <- dpd_ai_name(name)
   purrr::map(drugs$drug_code, \(x) dpd_drug_id(x)) |>
     purrr::list_rbind()
 }
