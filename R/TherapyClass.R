@@ -5,7 +5,15 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `tc_ahfs`: Description of the American Hospital Formulary Service.
+#'   - `tc_ahfs_number`: American Hospital Formulary Service code.
+#'   - `tc_atc`: Description of the Anatomical Therapeutic Chemical Code.
+#'   - `tc_atc_number`: Anatomical Therapeutic Chemical Code.
+#'
+#' @examples
+#' dpd_class(10564)
 #'
 #' @export
 dpd_class <- function(id) {

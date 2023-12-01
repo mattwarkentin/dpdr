@@ -10,9 +10,23 @@ dpd_status(id)
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{expiration_date}: Latest expiry date of a product distributed in Canada,
+where the product has since been discontinued by the company.
+\item \code{external_status_code}: Code assigned to an external drug's status.
+\item \code{history_date}: Historical date associated with a drug's status.
+\item \code{lot_number}: Latest lot number of a product distributed in Canada, where
+the product has since been discontinued by the company.
+\item \code{original_market_date}: Original market date of a product.
+}
 }
 \description{
 The statuses listed below are a direct representation of the status available
 in DPD Online Query and the description of each status is summarized below.
+}
+\examples{
+dpd_status(10229)
+
 }

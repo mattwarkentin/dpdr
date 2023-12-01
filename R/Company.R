@@ -1,11 +1,23 @@
 #' Company
 #'
-#' In the DPD, a product may have several companies associated with them. Each
-#'   product will have a DIN Owner associated with it.
+#' Company information associated with a company code.
 #'
 #' @param id Company code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `city_name`: City name.
+#'   - `company_code`: Code assigned to a company.
+#'   - `company_name`: Company name.
+#'   - `company_type`: Company type.
+#'   - `country_name`: Country name.
+#'   - `post_office_box`: P.O. box number (if applicable).
+#'   - `postal_code`: Postal code.
+#'   - `province_name`: Province name.
+#'   - `street_name`: Street name.
+#'   - `suite_number`: Suite number.
+#'
+#' @examples
+#' dpd_company(10825)
 #'
 #' @export
 dpd_company <- function(id) {

@@ -10,9 +10,17 @@ dpd_species(id)
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{vet_species_name}: Animal species.
+}
 }
 \description{
 The type of species for a certain veterinary product (e.g. sheep, dog,
 cattle, and poultry).
+}
+\examples{
+dpd_species(13755)
+
 }

@@ -8,7 +8,13 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `pharmaceutical_form_code`: Code assigned to a dosage form.
+#'   - `pharmaceutical_form_name`: Dosage form.
+#'
+#' @examples
+#' dpd_dosage(10846)
 #'
 #' @export
 dpd_dosage <- function(id) {

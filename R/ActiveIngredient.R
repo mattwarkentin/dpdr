@@ -8,7 +8,18 @@
 #' @param id Drug product code.
 #' @param name Active ingredient name.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `dosage_unit`: Active ingredient dosage unit.
+#'   - `dosage_value`: Quantitative value of the active ingredient dosage.
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `ingredient_name`: Ingredient name.
+#'   - `strength`: Quantitative value of the active ingredient strength.
+#'   - `strength_unit`: Active ingredient strength unit.
+#'
+#' @examples
+#' dpd_ai_id(48905)
+#'
+#' dpd_ai_name('afatinib')
 #'
 #' @export
 dpd_ai_id <- function(id) {

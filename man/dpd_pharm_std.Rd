@@ -10,8 +10,16 @@ dpd_pharm_std(id)
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: code assigned to each drug product.
+\item \code{pharmaceutical_std}: Pharmaceutical_std
+}
 }
 \description{
 The standard to which a drug product is manufactured and represented.
+}
+\examples{
+dpd_pharm_std(11534)
+
 }

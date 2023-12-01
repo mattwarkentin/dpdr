@@ -5,7 +5,12 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `vet_species_name`: Animal species.
+#'
+#' @examples
+#' dpd_species(13755)
 #'
 #' @export
 dpd_species <- function(id) {

@@ -28,14 +28,47 @@ dpd_drug_dins(name)
 
 \item{brand}{Brand name.}
 
-\item{status}{Drug product status.}
+\item{status}{Drug product status. See \strong{Details} section.}
 
 \item{name}{Active ingredient name.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{ai_group_no}: Active Ingredient Group Number.
+\item \code{brand_name}: Brand name for the drug product.
+\item \code{class_name}: Therapeutic class of a drug product.
+\item \code{descriptor}: Additional details or descriptions for a product,
+if applicable.
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{drug_identification_number}: Drug Identification Number.
+\item \code{number_of_ais}: Number of Active Ingredients in a drug product.
+\item \code{company_name}: Company name.
+\item \code{last_update_date}: Date is updated any time certain, but not all, key
+fields are changed.
+}
 }
 \description{
 Basic information about the product, such as brand name and Drug
 Identification Number.
+}
+\details{
+\code{status} must be an integer, corresponding to the following statuses:
+\itemize{
+\item \code{1}: Approved
+\item \code{2}: Marketed
+\item \code{3}: Cancelled Pre Market
+\item \code{4}: Cancelled Post Market
+\item \code{6}: Dormant
+\item \code{9}: Cancelled (Unreturned Annual)
+\item \code{10}: Cancelled (Safety Issue)
+}
+}
+\examples{
+dpd_drug_id(2049)
+
+dpd_drug_din('00326925')
+
+dpd_drug_status(10)
+
 }

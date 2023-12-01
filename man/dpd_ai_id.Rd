@@ -18,11 +18,25 @@ dpd_ai_all()
 \item{name}{Active ingredient name.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{dosage_unit}: Active ingredient dosage unit.
+\item \code{dosage_value}: Quantitative value of the active ingredient dosage.
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{ingredient_name}: Ingredient name.
+\item \code{strength}: Quantitative value of the active ingredient strength.
+\item \code{strength_unit}: Active ingredient strength unit.
+}
 }
 \description{
 An Active Ingredient is any component that has medicinal properties, and
 supplies pharmacological activity or other direct effect in the diagnosis,
 cure, mitigation, treatment or prevention of disease, or to affect the
 structure or any function of the body of a human or an animal.
+}
+\examples{
+dpd_ai_id(48905)
+
+dpd_ai_name('afatinib')
+
 }

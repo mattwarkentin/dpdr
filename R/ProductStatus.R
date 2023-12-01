@@ -5,7 +5,18 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `expiration_date`: Latest expiry date of a product distributed in Canada,
+#'     where the product has since been discontinued by the company.
+#'   - `external_status_code`: Code assigned to an external drug's status.
+#'   - `history_date`: Historical date associated with a drug's status.
+#'   - `lot_number`: Latest lot number of a product distributed in Canada, where
+#'     the product has since been discontinued by the company.
+#'   - `original_market_date`: Original market date of a product.
+#'
+#' @examples
+#' dpd_status(10229)
 #'
 #' @export
 dpd_status <- function(id) {

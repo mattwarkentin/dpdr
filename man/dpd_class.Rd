@@ -10,9 +10,20 @@ dpd_class(id)
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{tc_ahfs}: Description of the American Hospital Formulary Service.
+\item \code{tc_ahfs_number}: American Hospital Formulary Service code.
+\item \code{tc_atc}: Description of the Anatomical Therapeutic Chemical Code.
+\item \code{tc_atc_number}: Anatomical Therapeutic Chemical Code.
+}
 }
 \description{
 A drug's Therapeutic Classification (Class) is assigned according to its main
 therapeutic use.
+}
+\examples{
+dpd_class(10564)
+
 }

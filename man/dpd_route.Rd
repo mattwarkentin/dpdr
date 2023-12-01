@@ -13,7 +13,13 @@ dpd_route_all()
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{route_of_administration_code}: Code assigned to a route of
+administration.
+\item \code{route_of_administration_name}: Route of administration.
+}
 }
 \description{
 Indicates the part of the body on which, through which or into which the
@@ -22,4 +28,8 @@ product is to be introduced (e.g. oral, topical, intramuscular, rectal).
 \details{
 A product can have more than one route of administration
 (e.g. intravenous, intramuscular, intra-articular).
+}
+\examples{
+dpd_route(3)
+
 }

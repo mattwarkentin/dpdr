@@ -8,7 +8,14 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `route_of_administration_code`: Code assigned to a route of
+#'     administration.
+#'   - `route_of_administration_name`: Route of administration.
+#'
+#' @examples
+#' dpd_route(3)
 #'
 #' @export
 dpd_route <- function(id) {

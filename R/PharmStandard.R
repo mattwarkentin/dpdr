@@ -4,7 +4,12 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: code assigned to each drug product.
+#'   - `pharmaceutical_std`: Pharmaceutical_std
+#'
+#' @examples
+#' dpd_pharm_std(11534)
 #'
 #' @export
 dpd_pharm_std <- function(id) {

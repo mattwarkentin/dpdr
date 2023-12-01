@@ -4,7 +4,16 @@
 #'
 #' @param id Drug product code.
 #'
-#' @return A `tibble`.
+#' @return A `tibble` with columns:
+#'   - `drug_code`: Code assigned to each drug product.
+#'   - `package_size`: Size of package.
+#'   - `package_size_unit`: Unit for package size.
+#'   - `package_type`: Type of package.
+#'   - `product_information`: Additional product information.
+#'   - `upc`: Universal Product Code.
+#'
+#' @examples
+#' dpd_packaging(11685)
 #'
 #' @export
 dpd_packaging <- function(id) {

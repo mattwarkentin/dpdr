@@ -13,9 +13,47 @@ dpd_schedule_all()
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{schedule_name}: Drug schedule according to the Food and Drug Regulations
+and the Controlled Drugs and Substances Act.
+}
 }
 \description{
 Each drug is assigned one or more schedules, according to the Food and Drug
 Regulations, and the Controlled Drugs and Substances Act.
+}
+\details{
+Each drug is assigned one or more schedules, according to the Food and Drug
+Regulations, and the Controlled Drugs and Substances Act.
+\itemize{
+\item Prescription (prescription drugs included in the Prescription Drug List)
+\item Prescription Recommended (drugs that are recommended to be listed on the
+Prescription Drug List)
+\item Schedule G (control drugs)
+\item Schedule G (Controlled Drugs and Substances Act (CDSA) III)
+\item Schedule G (CDSA IV)
+\item Schedule C (drugs listed in Schedule C of the Food and Drugs Act, for
+example, radiopharmaceutical drugs)
+\item Schedule D (drugs listed in Schedule D of the Food and Drugs Act, ie.
+biological products)
+\item Narcotic (Narcotic Control Act)
+\item Narcotic (CDSA I)S
+\item Narcotic (CDSA II)
+\item Targeted (CDSA IV)
+\item CDSA Recommended- Undergoing Regulatory Amendment to add this new
+substance to Controlled Drugs Substances Act
+\item OTC (over the counter drugs that do not appear on a schedule or are not
+recommended to appear on any schedule)
+\item Ethical: a drug that, in accordance with Federal Legislation, does not
+require a prescription, but that is generally prescribed by a medical
+practitioner. Ethical products are unscheduled non-prescription
+professional use products (e.g. MRI contrast agents, hemodialysis
+solutions) and a few emergency use products (e.g. nitroglycerine)
+}
+}
+\examples{
+dpd_schedule(10687)
+
 }

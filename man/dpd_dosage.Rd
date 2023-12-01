@@ -13,7 +13,12 @@ dpd_dosage_all()
 \item{id}{Drug product code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{drug_code}: Code assigned to each drug product.
+\item \code{pharmaceutical_form_code}: Code assigned to a dosage form.
+\item \code{pharmaceutical_form_name}: Dosage form.
+}
 }
 \description{
 The dosage form is the form of presentation in which the product is supplied,
@@ -22,4 +27,8 @@ for example, tablet, capsule, powder, etc.
 \details{
 A product can have more than one dosage form when it is a kit
 (e.g. tablet, capsule).
+}
+\examples{
+dpd_dosage(10846)
+
 }

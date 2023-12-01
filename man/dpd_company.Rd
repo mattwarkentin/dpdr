@@ -10,9 +10,24 @@ dpd_company(id)
 \item{id}{Company code.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} with columns:
+\itemize{
+\item \code{city_name}: City name.
+\item \code{company_code}: Code assigned to a company.
+\item \code{company_name}: Company name.
+\item \code{company_type}: Company type.
+\item \code{country_name}: Country name.
+\item \code{post_office_box}: P.O. box number (if applicable).
+\item \code{postal_code}: Postal code.
+\item \code{province_name}: Province name.
+\item \code{street_name}: Street name.
+\item \code{suite_number}: Suite number.
+}
 }
 \description{
-In the DPD, a product may have several companies associated with them. Each
-product will have a DIN Owner associated with it.
+Company information associated with a company code.
+}
+\examples{
+dpd_company(10825)
+
 }
