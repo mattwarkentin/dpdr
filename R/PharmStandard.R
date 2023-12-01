@@ -1,0 +1,17 @@
+#' Pharmaceutical Standard
+#'
+#' The standard to which a drug product is manufactured and represented.
+#'
+#' @param id Drug product code.
+#'
+#' @return A `tibble`.
+#'
+#' @export
+dpd_pharm_std <- function(id) {
+  httr2::request(api_base_url()) |>
+    httr2::req_url_path_append(glue::glue('pharmaceuticalstd/?id={id}')) |>
+    httr2::req_perform() |>
+    httr2::resp_body_string() |>
+    jsonlite::fromJSON() |>
+    tibble::as_tibble()
+}
