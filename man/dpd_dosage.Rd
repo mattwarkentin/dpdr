@@ -5,12 +5,12 @@
 \alias{dpd_dosage_all}
 \title{Dosage Form}
 \usage{
-dpd_dosage(id)
+dpd_dosage(ids)
 
 dpd_dosage_all()
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product codes.}
 }
 \value{
 A \code{tibble} with columns:

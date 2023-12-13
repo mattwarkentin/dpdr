@@ -4,10 +4,10 @@
 \alias{dpd_status}
 \title{Product Status}
 \usage{
-dpd_status(id)
+dpd_status(ids)
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product code.}
 }
 \value{
 A \code{tibble} with columns:

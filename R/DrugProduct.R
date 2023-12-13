@@ -3,11 +3,11 @@
 #' Basic information about the product, such as brand name and Drug
 #'   Identification Number.
 #'
-#' @param id Drug product code.
-#' @param name Active ingredient name.
-#' @param din Drug Identification Number (DIN).
-#' @param brand Brand name.
-#' @param status Drug product status. See __Details__ section.
+#' @param ids Drug product code.
+#' @param names Active ingredient name.
+#' @param dins Drug Identification Number (DIN).
+#' @param brands Brand name.
+#' @param statuses Drug product status. See __Details__ section.
 #'
 #' @details
 #' `status` must be an integer, corresponding to the following statuses:
@@ -42,56 +42,67 @@
 #' @md
 #'
 #' @export
-dpd_drug_id <- function(id) {
-  if (!rlang::is_scalar_integerish(id)) {
-    rlang::abort('`id` must be a scalar integer.')
+dpd_drug_id <- function(ids) {
+  ids <- check_int_char_vec(ids)
+  .f <- function(id) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('drugproduct/?id={id}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
   }
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('drugproduct/?id={id}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+  purrr::map(ids, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_drug_id
 #' @export
-dpd_drug_din <- function(din) {
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('drugproduct/?din={din}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+dpd_drug_din <- function(dins) {
+  dins <- check_int_char_vec(dins)
+  .f <- function(din) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('drugproduct/?din={din}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
+  }
+  purrr::map(dins, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_drug_id
 #' @export
-dpd_drug_brand <- function(brand) {
-  if (!rlang::is_scalar_character(brand)) {
-    rlang::abort('`brand` must be a scalar character.')
+dpd_drug_brand <- function(brands) {
+  brands <- check_char_vec(brands)
+  brands <- utils::URLencode(brands)
+  .f <- function(brand) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('drugproduct/?brandname={brand}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
   }
-  brand <- utils::URLencode(brand)
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('drugproduct/?brandname={brand}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+  purrr::map(brands, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_drug_id
 #' @export
-dpd_drug_status <- function(status) {
-  if (!rlang::is_scalar_integerish(status)) {
-    rlang::abort('`status` must be a scalar integer.')
+dpd_drug_status <- function(statuses) {
+  statuses <- check_int_char_vec(statuses)
+  .f <- function(status) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('drugproduct/?status={status}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
   }
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('drugproduct/?status={status}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+  purrr::map(statuses, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_drug_id
@@ -107,8 +118,7 @@ dpd_drug_all <- function() {
 
 #' @rdname dpd_drug_id
 #' @export
-dpd_drug_dins <- function(name) {
-  drugs <- dpd_ai_name(name)
-  purrr::map(drugs$drug_code, \(x) dpd_drug_id(x)) |>
-    purrr::list_rbind()
+dpd_drug_dins <- function(names) {
+  drugs <- dpd_ai_name(names)
+  dpd_drug_id(drugs$drug_code)
 }

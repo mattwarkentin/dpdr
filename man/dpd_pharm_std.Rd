@@ -4,10 +4,10 @@
 \alias{dpd_pharm_std}
 \title{Pharmaceutical Standard}
 \usage{
-dpd_pharm_std(id)
+dpd_pharm_std(ids)
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product codes.}
 }
 \value{
 A \code{tibble} with columns:

@@ -29,6 +29,124 @@ You can install the development version of `dpdr` from [GitHub](https://github.c
 remotes::install_github("oncology-outcomes/dpdr")
 ```
 
+## Usage
+
+There are 11 API endpoints as part of Health Canada's Drug Product Database API. Each of these endpoints will be demonstrated in the following sections.
+
+```{r}
+library(dpdr)
+```
+
+### Active Ingredient
+
+We can search for active ingredient information based on the drug code...
+
+```{r}
+dpd_ai_id(48905)
+```
+
+Or based on the name of a drug.
+
+```{r}
+dpd_ai_name('afatinib')
+```
+
+### Company
+
+We can search for information about a drug company:
+
+```{r}
+dpd_company(10825)
+```
+
+### Drug Product
+
+The family of drug product functions allow us to query information about drug products based on the drug id or drug identification number (DIN).
+
+```{r}
+dpd_drug_id(2049)
+```
+
+```{r}
+dpd_drug_din('00326925')
+```
+
+We can also find the list of drugs based on the drugs product status (see `?dpd_drug_status` for more information).
+
+```{r}
+dpd_drug_status(6)
+```
+
+Lastly, we can find all possible DINs associated with a drug name.
+
+```{r}
+dpd_drug_dins('afatinib')
+```
+
+### Dosage Form
+
+The dosage form is form of presentation in which the product is supplied. We can query dosage form based on the drug product code.
+
+```{r}
+dpd_dosage(10846)
+```
+
+### Packaging
+
+We can query the information about package sizes based on the drug product code.
+
+```{r}
+dpd_packaging(11685)
+```
+
+### Pharmaceutical Standard
+
+We can query the standard to which the drug product is manufactured and represented, based on the drug product code.
+
+```{r}
+dpd_pharm_std(11534)
+```
+
+### Route of Administration
+
+We can query the route of administration for a drug based on the drug product code.
+
+```{r}
+dpd_route(3)
+```
+
+### Schedule
+
+Each drug is assigned one or more schedules, we can query this based on the drug product code (see `?dpd_schedule` for more information).
+
+```{r}
+dpd_schedule(10687)
+```
+
+### Product Status
+
+We can query the status of a drug product based on the drug product code.
+
+```{r}
+dpd_status(10229)
+```
+
+### Therapeutic Class
+
+We can query the Therapeutic Class according to a drugs main therapeutic use.
+
+```{r}
+dpd_class(10564)
+```
+
+### Veterinary Species
+
+Lastly, we can query the species for a drug product based on the veterinary drug product code.
+
+```{r}
+dpd_vet_species(13755)
+```
+
 ## Code of Conduct
 
 Please note that the dpdr project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

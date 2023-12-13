@@ -3,7 +3,7 @@
 #' Each drug is assigned one or more schedules, according to the Food and Drug
 #'   Regulations, and the Controlled Drugs and Substances Act.
 #'
-#' @param id Drug product code.
+#' @param ids Vector of drug product code.
 #'
 #' @details
 #' Each drug is assigned one or more schedules, according to the Food and Drug
@@ -42,13 +42,18 @@
 #' dpd_schedule(10687)
 #'
 #' @export
-dpd_schedule <- function(id) {
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('schedule/?id={id}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+dpd_schedule <- function(ids) {
+  ids <- check_int_char_vec(ids)
+  .f <- function(id) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('schedule/?id={id}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
+  }
+  purrr::map(ids, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_schedule

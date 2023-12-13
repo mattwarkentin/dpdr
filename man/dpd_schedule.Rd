@@ -5,12 +5,12 @@
 \alias{dpd_schedule_all}
 \title{Schedule}
 \usage{
-dpd_schedule(id)
+dpd_schedule(ids)
 
 dpd_schedule_all()
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product code.}
 }
 \value{
 A \code{tibble} with columns:

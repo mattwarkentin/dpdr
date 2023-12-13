@@ -6,7 +6,7 @@
 #'   A product can have more than one route of administration
 #'   (e.g. intravenous, intramuscular, intra-articular).
 #'
-#' @param id Drug product code.
+#' @param ids Vector of drug product codes.
 #'
 #' @return A `tibble` with columns:
 #'   - `drug_code`: Code assigned to each drug product.
@@ -18,13 +18,18 @@
 #' dpd_route(3)
 #'
 #' @export
-dpd_route <- function(id) {
-  httr2::request(api_base_url()) |>
-    httr2::req_url_path_append(glue::glue('route/?id={id}')) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
-    tibble::as_tibble()
+dpd_route <- function(ids) {
+  ids <- check_int_char_vec(ids)
+  .f <- function(id) {
+    httr2::request(api_base_url()) |>
+      httr2::req_url_path_append(glue::glue('route/?id={id}')) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON() |>
+      tibble::as_tibble()
+  }
+  purrr::map(ids, .f) |>
+    purrr::list_rbind()
 }
 
 #' @rdname dpd_route

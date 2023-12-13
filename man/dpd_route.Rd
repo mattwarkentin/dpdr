@@ -5,12 +5,12 @@
 \alias{dpd_route_all}
 \title{Route of Administration}
 \usage{
-dpd_route(id)
+dpd_route(ids)
 
 dpd_route_all()
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product codes.}
 }
 \value{
 A \code{tibble} with columns:

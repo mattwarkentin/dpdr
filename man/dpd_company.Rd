@@ -4,10 +4,10 @@
 \alias{dpd_company}
 \title{Company}
 \usage{
-dpd_company(id)
+dpd_company(ids)
 }
 \arguments{
-\item{id}{Company code.}
+\item{ids}{Vector of company codes.}
 }
 \value{
 A \code{tibble} with columns:

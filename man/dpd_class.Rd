@@ -4,10 +4,10 @@
 \alias{dpd_class}
 \title{Therapeutic Class}
 \usage{
-dpd_class(id)
+dpd_class(ids)
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product codes.}
 }
 \value{
 A \code{tibble} with columns:

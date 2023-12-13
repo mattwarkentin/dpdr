@@ -4,10 +4,10 @@
 \alias{dpd_packaging}
 \title{Packaging}
 \usage{
-dpd_packaging(id)
+dpd_packaging(ids)
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product code.}
 }
 \value{
 A \code{tibble} with columns:

@@ -9,28 +9,28 @@
 \alias{dpd_drug_dins}
 \title{Drug Product}
 \usage{
-dpd_drug_id(id)
+dpd_drug_id(ids)
 
-dpd_drug_din(din)
+dpd_drug_din(dins)
 
-dpd_drug_brand(brand)
+dpd_drug_brand(brands)
 
-dpd_drug_status(status)
+dpd_drug_status(statuses)
 
 dpd_drug_all()
 
-dpd_drug_dins(name)
+dpd_drug_dins(names)
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Drug product code.}
 
-\item{din}{Drug Identification Number (DIN).}
+\item{dins}{Drug Identification Number (DIN).}
 
-\item{brand}{Brand name.}
+\item{brands}{Brand name.}
 
-\item{status}{Drug product status. See \strong{Details} section.}
+\item{statuses}{Drug product status. See \strong{Details} section.}
 
-\item{name}{Active ingredient name.}
+\item{names}{Active ingredient name.}
 }
 \value{
 A \code{tibble} with columns:

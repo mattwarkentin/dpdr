@@ -6,16 +6,16 @@
 \alias{dpd_ai_all}
 \title{Active Ingredient}
 \usage{
-dpd_ai_id(id)
+dpd_ai_id(ids)
 
-dpd_ai_name(name)
+dpd_ai_name(names)
 
 dpd_ai_all()
 }
 \arguments{
-\item{id}{Drug product code.}
+\item{ids}{Vector of drug product codes.}
 
-\item{name}{Active ingredient name.}
+\item{names}{Vector of active ingredient names.}
 }
 \value{
 A \code{tibble} with columns:
