@@ -2,7 +2,7 @@ Package: dpdr
 Title: Interface to Health Canada Drug Product Database API
 Version: 0.0.0.9000
 Authors@R: 
-    person("Matthew T.", "Warkentin", , "warkentin@lunenfeld.ca", role = c("aut", "cre"),
+    person("Matthew T.", "Warkentin", , "matthew.warkentinn@ucalgary.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8730-3511"))
 Description: Provides a programmatic interface to the Health Canada Drug
     Product Database Application Programming Interface (API) for querying
@@ -10,7 +10,7 @@ Description: Provides a programmatic interface to the Health Canada Drug
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2.9000
 Imports: 
     glue,
     httr2,

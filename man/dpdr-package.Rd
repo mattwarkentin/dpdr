@@ -9,7 +9,7 @@
 Provides a programmatic interface to the Health Canada Drug Product Database Application Programming Interface (API) for querying specific information on drugs approved for use in Canada.
 }
 \author{
-\strong{Maintainer}: Matthew T. Warkentin \email{warkentin@lunenfeld.ca} (\href{https://orcid.org/0000-0001-8730-3511}{ORCID})
+\strong{Maintainer}: Matthew T. Warkentin \email{matthew.warkentinn@ucalgary.ca} (\href{https://orcid.org/0000-0001-8730-3511}{ORCID})
 
 }
 \keyword{internal}

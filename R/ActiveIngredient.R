@@ -41,6 +41,7 @@ dpd_ai_id <- function(ids) {
 dpd_ai_name <- function(names) {
   names <- check_char_vec(names)
   .f <- function(name) {
+    name <- utils::URLencode(name)
     httr2::request(api_base_url()) |>
       httr2::req_url_path_append(glue::glue('activeingredient/?ingredientname={name}')) |>
       httr2::req_perform() |>
