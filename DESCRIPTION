@@ -2,7 +2,7 @@ Package: dpdr
 Title: Interface to Health Canada Drug Product Database API
 Version: 0.0.0.9000
 Authors@R: 
-    person("Matthew T.", "Warkentin", , "matthew.warkentinn@ucalgary.ca", role = c("aut", "cre"),
+    person("Matthew T.", "Warkentin", , "matthew.warkentin@ucalgary.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8730-3511"))
 Description: Provides a programmatic interface to the Health Canada Drug
     Product Database Application Programming Interface (API) for querying
@@ -18,3 +18,6 @@ Imports:
     purrr,
     rlang,
     tibble
+URL: https://github.com/mattwarkentin/dpdr,
+    https://mattwarkentin.github.io/dpdr/
+BugReports: https://github.com/mattwarkentin/dpdr/issues
