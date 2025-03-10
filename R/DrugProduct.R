@@ -45,7 +45,7 @@
 dpd_drug_id <- function(ids) {
   ids <- check_int_char_vec(ids)
   .f <- function(id) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('drugproduct/?id={id}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -61,7 +61,7 @@ dpd_drug_id <- function(ids) {
 dpd_drug_din <- function(dins) {
   dins <- check_int_char_vec(dins)
   .f <- function(din) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('drugproduct/?din={din}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -78,7 +78,7 @@ dpd_drug_brand <- function(brands) {
   brands <- check_char_vec(brands)
   brands <- utils::URLencode(brands)
   .f <- function(brand) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('drugproduct/?brandname={brand}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -94,7 +94,7 @@ dpd_drug_brand <- function(brands) {
 dpd_drug_status <- function(statuses) {
   statuses <- check_int_char_vec(statuses)
   .f <- function(status) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('drugproduct/?status={status}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -108,7 +108,7 @@ dpd_drug_status <- function(statuses) {
 #' @rdname dpd_drug_id
 #' @export
 dpd_drug_all <- function() {
-  httr2::request(api_base_url()) |>
+  .dpd_request() |>
     httr2::req_url_path_append(glue::glue('drugproduct/')) |>
     httr2::req_perform() |>
     httr2::resp_body_string() |>

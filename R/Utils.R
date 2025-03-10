@@ -1,3 +1,8 @@
+.dpd_request <- function() {
+  httr2::request('https://health-products.canada.ca/api/drug/') |>
+    httr2::req_options(ssl_verifypeer = 0)
+}
+
 api_base_url <- function() {
   'https://health-products.canada.ca/api/drug/'
 }

@@ -19,7 +19,7 @@
 dpd_class <- function(ids) {
   ids <- check_int_char_vec(ids)
   .f <- function(id) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('therapeuticclass/?id={id}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>

@@ -45,7 +45,7 @@
 dpd_schedule <- function(ids) {
   ids <- check_int_char_vec(ids)
   .f <- function(id) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('schedule/?id={id}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -59,7 +59,7 @@ dpd_schedule <- function(ids) {
 #' @rdname dpd_schedule
 #' @export
 dpd_schedule_all <- function() {
-  httr2::request(api_base_url()) |>
+  .dpd_request() |>
     httr2::req_url_path_append(glue::glue('schedule/')) |>
     httr2::req_perform() |>
     httr2::resp_body_string() |>

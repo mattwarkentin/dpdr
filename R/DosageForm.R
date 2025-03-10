@@ -20,7 +20,7 @@
 dpd_dosage <- function(ids) {
   ids <- check_int_char_vec(ids)
   .f <- function(id) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('form/?id={id}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -34,7 +34,7 @@ dpd_dosage <- function(ids) {
 #' @rdname dpd_dosage
 #' @export
 dpd_dosage_all <- function() {
-  httr2::request(api_base_url()) |>
+  .dpd_request() |>
     httr2::req_url_path_append(glue::glue('form/')) |>
     httr2::req_perform() |>
     httr2::resp_body_string() |>

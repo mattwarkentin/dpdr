@@ -21,7 +21,7 @@
 dpd_route <- function(ids) {
   ids <- check_int_char_vec(ids)
   .f <- function(id) {
-    httr2::request(api_base_url()) |>
+    .dpd_request() |>
       httr2::req_url_path_append(glue::glue('route/?id={id}')) |>
       httr2::req_perform() |>
       httr2::resp_body_string() |>
@@ -35,7 +35,7 @@ dpd_route <- function(ids) {
 #' @rdname dpd_route
 #' @export
 dpd_route_all <- function() {
-  httr2::request(api_base_url()) |>
+  .dpd_request() |>
     httr2::req_url_path_append(glue::glue('route/')) |>
     httr2::req_perform() |>
     httr2::resp_body_string() |>

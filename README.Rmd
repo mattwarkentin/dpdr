@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/oncology-outcomes/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/oncology-outcomes/dpdr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `dpdr` is to provide a programmatic interface to the Health Canada Drug Product Database API.
@@ -26,7 +26,7 @@ You can install the development version of `dpdr` from [GitHub](https://github.c
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("oncology-outcomes/dpdr")
+remotes::install_github("mattwarkentin/dpdr")
 ```
 
 ## Usage

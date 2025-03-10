@@ -5,7 +5,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/oncology-outcomes/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/oncology-outcomes/dpdr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `dpdr` is to provide a programmatic interface to the Health
@@ -18,7 +18,7 @@ You can install the development version of `dpdr` from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("oncology-outcomes/dpdr")
+remotes::install_github("mattwarkentin/dpdr")
 ```
 
 ## Usage
@@ -57,12 +57,21 @@ Or based on the name of a drug.
 
 ``` r
 dpd_ai_name('afatinib')
-#> # A tibble: 3 × 6
-#>   dosage_unit dosage_value drug_code ingredient_name      strength strength_unit
-#>   <chr>       <chr>            <int> <chr>                <chr>    <chr>        
-#> 1 ""          ""               90026 AFATINIB (AFATINIB … 20       MG           
-#> 2 ""          ""               90027 AFATINIB (AFATINIB … 30       MG           
-#> 3 ""          ""               90028 AFATINIB (AFATINIB … 40       MG
+#> # A tibble: 12 × 6
+#>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
+#>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
+#>  1 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
+#>  2 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
+#>  3 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           
+#>  4 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
+#>  5 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           
+#>  6 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  7 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
+#>  8 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
+#>  9 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
+#> 10 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
+#> 11 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
+#> 12 ""          ""              100637 AFATINIB (AFATINIB… 40       MG
 ```
 
 ### Company
@@ -109,20 +118,20 @@ We can also find the list of drugs based on the drugs product status
 
 ``` r
 dpd_drug_status(6)
-#> # A tibble: 2,743 × 9
+#> # A tibble: 2,770 × 9
 #>    drug_code class_name drug_identification_number brand_name         descriptor
 #>        <int> <chr>      <chr>                      <chr>              <chr>     
 #>  1       209 Human      00001686                   XYLOCAINE VISCOUS… ""        
 #>  2       157 Human      00010332                   ENTROPHEN 325MG T… ""        
 #>  3       468 Human      00010340                   ENTROPHEN ECT 650… ""        
 #>  4      1184 Human      00015547                   KEFLEX             ""        
-#>  5       784 Human      00024449                   NAVANE             ""        
-#>  6      1212 Human      00035645                   KEFLEX             ""        
-#>  7      1748 Human      00037958                   DEXTROSE INJECTIO… ""        
-#>  8      1751 Human      00038873                   5% DEXTROSE AND 0… ""        
-#>  9      2575 Human      00038881                   3.33% DEXTROSE AN… ""        
-#> 10      1548 Human      00039306                   LACTATE 1-2-3 INJ… ""        
-#> # ℹ 2,733 more rows
+#>  5      1212 Human      00035645                   KEFLEX             ""        
+#>  6      1748 Human      00037958                   DEXTROSE INJECTIO… ""        
+#>  7      1751 Human      00038873                   5% DEXTROSE AND 0… ""        
+#>  8      2575 Human      00038881                   3.33% DEXTROSE AN… ""        
+#>  9      1548 Human      00039306                   LACTATE 1-2-3 INJ… ""        
+#> 10      1739 Human      00039489                   NORMOSOL-M & 5% D… "SINGLE-D…
+#> # ℹ 2,760 more rows
 #> # ℹ 4 more variables: number_of_ais <chr>, ai_group_no <chr>,
 #> #   company_name <chr>, last_update_date <chr>
 ```
@@ -131,12 +140,21 @@ Lastly, we can find all possible DINs associated with a drug name.
 
 ``` r
 dpd_drug_dins('afatinib')
-#> # A tibble: 3 × 9
-#>   drug_code class_name drug_identification_number brand_name descriptor
-#>       <int> <chr>      <chr>                      <chr>      <chr>     
-#> 1     90026 Human      02415666                   GIOTRIF    ""        
-#> 2     90027 Human      02415674                   GIOTRIF    ""        
-#> 3     90028 Human      02415682                   GIOTRIF    ""        
+#> # A tibble: 12 × 9
+#>    drug_code class_name drug_identification_number brand_name      descriptor
+#>        <int> <chr>      <chr>                      <chr>           <chr>     
+#>  1     90026 Human      02415666                   GIOTRIF         ""        
+#>  2     90027 Human      02415674                   GIOTRIF         ""        
+#>  3     90028 Human      02415682                   GIOTRIF         ""        
+#>  4    100203 Human      02512777                   SANDOZ AFATINIB ""        
+#>  5    100204 Human      02512785                   SANDOZ AFATINIB ""        
+#>  6    100205 Human      02512793                   SANDOZ AFATINIB ""        
+#>  7    100391 Human      02514591                   TEVA-AFATINIB   ""        
+#>  8    100392 Human      02514605                   TEVA-AFATINIB   ""        
+#>  9    100393 Human      02514613                   TEVA-AFATINIB   ""        
+#> 10    100635 Human      02517019                   MAR-AFATINIB    ""        
+#> 11    100636 Human      02517027                   MAR-AFATINIB    ""        
+#> 12    100637 Human      02517035                   MAR-AFATINIB    ""        
 #> # ℹ 4 more variables: number_of_ais <chr>, ai_group_no <chr>,
 #> #   company_name <chr>, last_update_date <chr>
 ```
@@ -192,11 +210,11 @@ dpd_route(3)
 #> # A tibble: 5 × 3
 #>   drug_code route_of_administration_code route_of_administration_name
 #>       <int>                        <int> <chr>                       
-#> 1         3                           49 Intravenous                 
-#> 2         3                           33 Intraperitoneal             
-#> 3         3                           31 Intrathecal                 
-#> 4         3                           34 Intrapleural                
-#> 5         3                           10 Intra-Articular
+#> 1         3                           34 Intrapleural                
+#> 2         3                           10 Intra-Articular             
+#> 3         3                           33 Intraperitoneal             
+#> 4         3                           49 Intravenous                 
+#> 5         3                           31 Intrathecal
 ```
 
 ### Schedule
