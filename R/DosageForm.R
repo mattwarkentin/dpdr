@@ -22,24 +22,19 @@ dpd_dosage_form <- function(id, active = FALSE, lang = c("en", "fr")) {
   lang <- rlang::arg_match(lang)
   check_scalar_logical(active)
 
-  if (rlang::is_missing(id)) {
-    path <- glue::glue('form/')
-  } else {
-    id <- check_int_char_scalar(id)
-    path <- glue::glue('form/?id={id}')
+  params <- list(lang = lang)
+
+  if (!rlang::is_missing(id)) {
+    params[["id"]] <- check_int_char_scalar(id)
   }
 
-  req <-
-    dpd_request() |>
-    httr2::req_url_path_append(path) |>
-    httr2::req_url_query(lang = lang)
+  req <- build_dpd_request("form/", params = params)
 
   if (active) {
     req <- httr2::req_url_query(req, active = "yes")
   }
 
-  req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    tibble::as_tibble()
+  resp <- httr2::req_perform(req)
+
+  process_dpd_response(resp)
 }

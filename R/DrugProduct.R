@@ -53,26 +53,21 @@ dpd_drug_product <- function(id, din, brandname, status, lang = c("en", "fr")) {
   rlang::check_exclusive(id, din, brandname, status, .require = FALSE)
   lang <- rlang::arg_match(lang)
 
+  params <- list(lang = lang)
+
   if (!rlang::is_missing(id)) {
-    id <- check_int_char_scalar(id)
-    path <- glue::glue('drugproduct/?id={id}')
+    params[["id"]] <- check_int_char_scalar(id)
   } else if (!rlang::is_missing(din)) {
-    din <- check_int_char_scalar(din)
-    path <- glue::glue('drugproduct/?din={din}')
+    params[["din"]] <- check_int_char_scalar(din)
   } else if (!rlang::is_missing(brandname)) {
-    brandname <- check_char_scalar(brandname)
-    path <- glue::glue('drugproduct/?brandname={brandname}')
+    params[["brandname"]] <- check_char_scalar(brandname)
   } else if (!rlang::is_missing(status)) {
-    status <- check_int_char_scalar(status)
-    path <- glue::glue('drugproduct/?status={status}')
-  } else {
-    path <- glue::glue('drugproduct/')
+    params[["status"]] <- check_int_char_scalar(status)
   }
 
-  dpd_request() |>
-    httr2::req_url_path_append(path) |>
-    httr2::req_url_query(lang = lang) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    tibble::as_tibble()
+  req <- build_dpd_request("drugproduct/", params = params)
+
+  resp <- httr2::req_perform(req)
+
+  process_dpd_response(resp)
 }

@@ -36,12 +36,16 @@
 #' @examples
 #' dpd_company(10825)
 dpd_company <- function(id, lang = c("en", "fr")) {
-  id <- check_int_char_scalar(id)
   lang <- rlang::arg_match(lang)
-  dpd_request() |>
-    httr2::req_url_path_append(glue::glue('company/?id={id}')) |>
-    httr2::req_url_query(lang = lang) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    tibble::as_tibble()
+  params <- list(lang = lang)
+
+  if (!rlang::is_missing(id)) {
+    params[["id"]] <- check_int_char_scalar(id)
+  }
+
+  req <- build_dpd_request("company/", params = params)
+
+  resp <- httr2::req_perform(req)
+
+  process_dpd_response(resp)
 }

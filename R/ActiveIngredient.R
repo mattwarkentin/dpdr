@@ -35,6 +35,7 @@
 #'   - `strength_unit`: Active ingredient strength unit.
 #'
 #' @import jsonlite
+#' @importFrom memoise memoise
 #'
 #' @export
 #'
@@ -46,20 +47,17 @@ dpd_active_ingredient <- function(id, name, lang = c("en", "fr")) {
   rlang::check_exclusive(id, name, .require = FALSE)
   lang <- rlang::arg_match(lang)
 
-  if (rlang::is_missing(id) & rlang::is_missing(name)) {
-    path <- glue::glue("activeingredient/")
-  } else if (rlang::is_missing(name)) {
-    id <- check_int_char_scalar(id)
-    path <- glue::glue("activeingredient/?id={id}")
-  } else if (rlang::is_missing(id)) {
-    name <- check_char_scalar(name)
-    path <- glue::glue("activeingredient/?ingredientname={name}")
+  params <- list(lang = lang)
+
+  if (!rlang::is_missing(name)) {
+    params[["ingredientname"]] <- check_char_scalar(name)
+  } else if (!rlang::is_missing(id)) {
+    params[["id"]] <- check_int_char_scalar(id)
   }
 
-  dpd_request() |>
-    httr2::req_url_path_append(path) |>
-    httr2::req_url_query(lang = lang) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    tibble::as_tibble()
+  req <- build_dpd_request("activeingredient/", params = params)
+
+  resp <- httr2::req_perform(req)
+
+  process_dpd_response(resp)
 }
