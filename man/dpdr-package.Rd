@@ -6,7 +6,7 @@
 \alias{dpdr-package}
 \title{dpdr: Interface to Health Canada Drug Product Database API}
 \description{
-Provides a programmatic interface to the Health Canada Drug Product Database Application Programming Interface (API) for querying specific information on drugs approved for use in Canada.
+This package provides a programmatic interface to the Health Canada Drug Product Database REST API for querying specific information on drugs approved for use in Canada.
 }
 \seealso{
 Useful links:

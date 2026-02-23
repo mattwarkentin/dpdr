@@ -3,26 +3,30 @@
 #' The type of species for a certain veterinary product (e.g. sheep, dog,
 #'   cattle, and poultry).
 #'
-#' @param ids Vector of drug product codes.
+#' @inheritParams dpd_active_ingredient
 #'
 #' @return A `tibble` with columns:
 #'   - `drug_code`: Code assigned to each drug product.
 #'   - `vet_species_name`: Animal species.
 #'
+#' @export
+#'
 #' @examples
 #' dpd_vet_species(13755)
-#'
-#' @export
-dpd_vet_species <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('veterinaryspecies/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
+dpd_vet_species <- function(id, lang = c("en", "fr")) {
+  lang <- rlang::arg_match(lang)
+
+  if (rlang::is_missing(id)) {
+    path <- glue::glue('veterinaryspecies/')
+  } else {
+    id <- check_int_char_scalar(id)
+    path <- glue::glue('veterinaryspecies/?id={id}')
   }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
+
+  dpd_request() |>
+    httr2::req_url_path_append(path) |>
+    httr2::req_url_query(lang = lang) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
+    tibble::as_tibble()
 }

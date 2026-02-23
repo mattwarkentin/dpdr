@@ -4,10 +4,13 @@
 \alias{dpd_company}
 \title{Company}
 \usage{
-dpd_company(ids)
+dpd_company(id, lang = c("en", "fr"))
 }
 \arguments{
-\item{ids}{Vector of company codes.}
+\item{id}{Company code.}
+
+\item{lang}{Language of the response. One of \code{"en"} or \code{"fr"} for English or
+French, respectively.}
 }
 \value{
 A \code{tibble} with columns:
@@ -27,7 +30,20 @@ A \code{tibble} with columns:
 \description{
 Company information associated with a company code.
 }
+\details{
+In the DPD, a product may have several companies associated with them. Each
+product will have a DIN Owner associated with it. If a DIN Owner has
+designated another company to receive their mailing, their name and
+address will also be included and can be identified with a 'Y' flag in the
+ADDRESS_MAILING_FLAG field.
+
+The company contact information is not included in the API (ATTENTION_TO,
+LANGUAGE, TELEPHONE_NUMBER, FAX_NUMBER, EMAIL_ADDRESS). The contact
+information in the database is generally a representative from the
+Regulatory Affairs department. It has come to our attention that some
+users are contacting these individuals to make general inquiries, we would
+like to recommend not doing so.
+}
 \examples{
 dpd_company(10825)
-
 }

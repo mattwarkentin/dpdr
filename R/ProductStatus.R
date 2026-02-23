@@ -3,7 +3,7 @@
 #' The statuses listed below are a direct representation of the status available
 #'   in DPD Online Query and the description of each status is summarized below.
 #'
-#' @param ids Vector of drug product code.
+#' @inheritParams dpd_active_ingredient
 #'
 #' @return A `tibble` with columns:
 #'   - `drug_code`: Code assigned to each drug product.
@@ -15,21 +15,24 @@
 #'     the product has since been discontinued by the company.
 #'   - `original_market_date`: Original market date of a product.
 #'
-#' @examples
-#' dpd_status(10229)
-#'
 #' @export
-dpd_status <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('status/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      purrr::modify_if(rlang::is_null, \(x) NA_character_) |>
-      tibble::as_tibble()
+#'
+#' @examples
+#' dpd_product_status()
+dpd_product_status <- function(id, lang = c("en", "fr")) {
+  lang <- rlang::arg_match(lang)
+
+  if (!rlang::is_missing(id)) {
+    id <- check_int_char_vec(id)
+    path <- glue::glue('status/?id={id}')
+  } else {
+    path <- glue::glue('status/')
   }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
+
+  dpd_request() |>
+    httr2::req_url_path_append(path) |>
+    httr2::req_url_query(lang = lang) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
+    tibble::as_tibble()
 }

@@ -4,10 +4,13 @@
 \alias{dpd_vet_species}
 \title{Veterinary Species}
 \usage{
-dpd_vet_species(ids)
+dpd_vet_species(id, lang = c("en", "fr"))
 }
 \arguments{
-\item{ids}{Vector of drug product codes.}
+\item{id}{Drug product code.}
+
+\item{lang}{Language of the response. One of \code{"en"} or \code{"fr"} for English or
+French, respectively.}
 }
 \value{
 A \code{tibble} with columns:
@@ -22,5 +25,4 @@ cattle, and poultry).
 }
 \examples{
 dpd_vet_species(13755)
-
 }

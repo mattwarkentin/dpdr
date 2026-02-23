@@ -3,11 +3,11 @@
 #' Basic information about the product, such as brand name and Drug
 #'   Identification Number.
 #'
-#' @param ids Drug product code.
-#' @param names Active ingredient name.
-#' @param dins Drug Identification Number (DIN).
-#' @param brands Brand name.
-#' @param statuses Drug product status. See __Details__ section.
+#' @param id Drug product code.
+#' @param din Drug Identification Number (DIN).
+#' @param brandname Brand name.
+#' @param status Drug product status. See __Details__ section.
+#' @inheritParams dpd_active_ingredient
 #'
 #' @details
 #' `status` must be an integer, corresponding to the following statuses:
@@ -18,6 +18,11 @@
 #'   - `6`: Dormant
 #'   - `9`: Cancelled (Unreturned Annual)
 #'   - `10`: Cancelled (Safety Issue)
+#'   - `11`: Authorized By Interim Order
+#'   - `12`: Authorization By Interim Order Revoked
+#'   - `13`: Restricted Access
+#'   - `14`: Authorization By Interim Order Expired
+#'   - `15`: Cancelled (Transitioned to Biocides)
 #'
 #' @return A `tibble` with columns:
 #'   - `ai_group_no`: Active Ingredient Group Number.
@@ -32,93 +37,42 @@
 #'   - `last_update_date`: Date is updated any time certain, but not all, key
 #'     fields are changed.
 #'
-#' @examples
-#' dpd_drug_id(2049)
-#'
-#' dpd_drug_din('00326925')
-#'
-#' dpd_drug_status(10)
-#'
 #' @md
 #'
 #' @export
-dpd_drug_id <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('drugproduct/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
-}
+#'
+#' @examples
+#' dpd_drug_product(id = 2049)
+#'
+#' dpd_drug_product(din = '00326925')
+#'
+#' dpd_drug_product(brandname = "cidyl")
+#'
+#' dpd_drug_product(status = 1)
+dpd_drug_product <- function(id, din, brandname, status, lang = c("en", "fr")) {
+  rlang::check_exclusive(id, din, brandname, status, .require = FALSE)
+  lang <- rlang::arg_match(lang)
 
-#' @rdname dpd_drug_id
-#' @export
-dpd_drug_din <- function(dins) {
-  dins <- check_int_char_vec(dins)
-  .f <- function(din) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('drugproduct/?din={din}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
+  if (!rlang::is_missing(id)) {
+    id <- check_int_char_scalar(id)
+    path <- glue::glue('drugproduct/?id={id}')
+  } else if (!rlang::is_missing(din)) {
+    din <- check_int_char_scalar(din)
+    path <- glue::glue('drugproduct/?din={din}')
+  } else if (!rlang::is_missing(brandname)) {
+    brandname <- check_char_scalar(brandname)
+    path <- glue::glue('drugproduct/?brandname={brandname}')
+  } else if (!rlang::is_missing(status)) {
+    status <- check_int_char_scalar(status)
+    path <- glue::glue('drugproduct/?status={status}')
+  } else {
+    path <- glue::glue('drugproduct/')
   }
-  purrr::map(dins, .f) |>
-    purrr::list_rbind()
-}
 
-#' @rdname dpd_drug_id
-#' @export
-dpd_drug_brand <- function(brands) {
-  brands <- check_char_vec(brands)
-  brands <- utils::URLencode(brands)
-  .f <- function(brand) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('drugproduct/?brandname={brand}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(brands, .f) |>
-    purrr::list_rbind()
-}
-
-#' @rdname dpd_drug_id
-#' @export
-dpd_drug_status <- function(statuses) {
-  statuses <- check_int_char_vec(statuses)
-  .f <- function(status) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('drugproduct/?status={status}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(statuses, .f) |>
-    purrr::list_rbind()
-}
-
-#' @rdname dpd_drug_id
-#' @export
-dpd_drug_all <- function() {
-  .dpd_request() |>
-    httr2::req_url_path_append(glue::glue('drugproduct/')) |>
+  dpd_request() |>
+    httr2::req_url_path_append(path) |>
+    httr2::req_url_query(lang = lang) |>
     httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     tibble::as_tibble()
-}
-
-#' @rdname dpd_drug_id
-#' @export
-dpd_drug_dins <- function(names) {
-  drugs <- dpd_ai_name(names)
-  dpd_drug_id(drugs$drug_code)
 }

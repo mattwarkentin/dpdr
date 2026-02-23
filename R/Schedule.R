@@ -3,7 +3,7 @@
 #' Each drug is assigned one or more schedules, according to the Food and Drug
 #'   Regulations, and the Controlled Drugs and Substances Act.
 #'
-#' @param ids Vector of drug product code.
+#' @inheritParams dpd_active_ingredient
 #'
 #' @details
 #' Each drug is assigned one or more schedules, according to the Food and Drug
@@ -38,31 +38,23 @@
 #'   - `schedule_name`: Drug schedule according to the Food and Drug Regulations
 #'     and the Controlled Drugs and Substances Act.
 #'
+#' @export
+#'
 #' @examples
 #' dpd_schedule(10687)
-#'
-#' @export
-dpd_schedule <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('schedule/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
-}
+dpd_schedule <- function(id, lang = c("en", "fr")) {
+  lang <- rlang::arg_match(lang)
 
-#' @rdname dpd_schedule
-#' @export
-dpd_schedule_all <- function() {
-  .dpd_request() |>
-    httr2::req_url_path_append(glue::glue('schedule/')) |>
+  if (!rlang::is_missing(id)) {
+    id <- check_int_char_vec(id)
+    path <- glue::glue('schedule/?id={id}')
+  } else {
+    path <- glue::glue('schedule/')
+  }
+
+  dpd_request() |>
+    httr2::req_url_path_append(path) |>
     httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     tibble::as_tibble()
 }

@@ -4,10 +4,13 @@
 \alias{dpd_packaging}
 \title{Packaging}
 \usage{
-dpd_packaging(ids)
+dpd_packaging(id, lang = c("en", "fr"))
 }
 \arguments{
-\item{ids}{Vector of drug product code.}
+\item{id}{Drug product code.}
+
+\item{lang}{Language of the response. One of \code{"en"} or \code{"fr"} for English or
+French, respectively.}
 }
 \value{
 A \code{tibble} with columns:
@@ -25,5 +28,4 @@ Information about available package sizes for each drug product.
 }
 \examples{
 dpd_packaging(11685)
-
 }

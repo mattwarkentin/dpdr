@@ -6,38 +6,40 @@
 #'   A product can have more than one dosage form when it is a kit
 #'   (e.g. tablet, capsule).
 #'
-#' @param ids Vector of drug product codes.
+#' @param active Only return dosage forms that are active? Default is `FALSE`.
+#' @inheritParams dpd_active_ingredient
 #'
 #' @return A `tibble` with columns:
 #'   - `drug_code`: Code assigned to each drug product.
 #'   - `pharmaceutical_form_code`: Code assigned to a dosage form.
 #'   - `pharmaceutical_form_name`: Dosage form.
 #'
-#' @examples
-#' dpd_dosage(10846)
+#' @export
 #'
-#' @export
-dpd_dosage <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('form/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
-}
+#' @examples
+#' dpd_dosage_form(10846)
+dpd_dosage_form <- function(id, active = FALSE, lang = c("en", "fr")) {
+  lang <- rlang::arg_match(lang)
+  check_scalar_logical(active)
 
-#' @rdname dpd_dosage
-#' @export
-dpd_dosage_all <- function() {
-  .dpd_request() |>
-    httr2::req_url_path_append(glue::glue('form/')) |>
+  if (rlang::is_missing(id)) {
+    path <- glue::glue('form/')
+  } else {
+    id <- check_int_char_scalar(id)
+    path <- glue::glue('form/?id={id}')
+  }
+
+  req <-
+    dpd_request() |>
+    httr2::req_url_path_append(path) |>
+    httr2::req_url_query(lang = lang)
+
+  if (active) {
+    req <- httr2::req_url_query(req, active = "yes")
+  }
+
+  req |>
     httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     tibble::as_tibble()
 }

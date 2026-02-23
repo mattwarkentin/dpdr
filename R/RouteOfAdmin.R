@@ -6,7 +6,8 @@
 #'   A product can have more than one route of administration
 #'   (e.g. intravenous, intramuscular, intra-articular).
 #'
-#' @param ids Vector of drug product codes.
+#' @inheritParams dpd_active_ingredient
+#' @inheritParams dpd_dosage_form
 #'
 #' @return A `tibble` with columns:
 #'   - `drug_code`: Code assigned to each drug product.
@@ -14,31 +15,31 @@
 #'     administration.
 #'   - `route_of_administration_name`: Route of administration.
 #'
-#' @examples
-#' dpd_route(3)
+#' @export
 #'
-#' @export
-dpd_route <- function(ids) {
-  ids <- check_int_char_vec(ids)
-  .f <- function(id) {
-    .dpd_request() |>
-      httr2::req_url_path_append(glue::glue('route/?id={id}')) |>
-      httr2::req_perform() |>
-      httr2::resp_body_string() |>
-      jsonlite::fromJSON() |>
-      tibble::as_tibble()
-  }
-  purrr::map(ids, .f) |>
-    purrr::list_rbind()
-}
+#' @examples
+#' dpd_route_of_admin(3)
+dpd_route_of_admin <- function(id, active = FALSE, lang = c("en", "fr")) {
+  lang <- rlang::arg_match(lang)
 
-#' @rdname dpd_route
-#' @export
-dpd_route_all <- function() {
-  .dpd_request() |>
-    httr2::req_url_path_append(glue::glue('route/')) |>
+  if (rlang::is_missing(id)) {
+    path <- glue::glue('route/')
+  } else {
+    id <- check_int_char_scalar(id)
+    path <- glue::glue('route/?id={id}')
+  }
+
+  req <-
+    dpd_request() |>
+    httr2::req_url_path_append(path) |>
+    httr2::req_url_query(lang = lang)
+
+  if (active) {
+    req <- httr2::req_url_query(req, active = "yes")
+  }
+
+  req |>
     httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON() |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     tibble::as_tibble()
 }

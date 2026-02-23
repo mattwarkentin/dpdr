@@ -2,15 +2,15 @@
 % Please edit documentation in R/Schedule.R
 \name{dpd_schedule}
 \alias{dpd_schedule}
-\alias{dpd_schedule_all}
 \title{Schedule}
 \usage{
-dpd_schedule(ids)
-
-dpd_schedule_all()
+dpd_schedule(id, lang = c("en", "fr"))
 }
 \arguments{
-\item{ids}{Vector of drug product code.}
+\item{id}{Drug product code.}
+
+\item{lang}{Language of the response. One of \code{"en"} or \code{"fr"} for English or
+French, respectively.}
 }
 \value{
 A \code{tibble} with columns:
@@ -55,5 +55,4 @@ solutions) and a few emergency use products (e.g. nitroglycerine)
 }
 \examples{
 dpd_schedule(10687)
-
 }
