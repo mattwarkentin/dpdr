@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interface to Health Canada Drug Product Database API">
-<meta name="description" content="Provides a programmatic interface to the Health Canada Drug Product Database Application Programming Interface (API) for querying specific information on drugs approved for use in Canada.">
-<meta property="og:description" content="Provides a programmatic interface to the Health Canada Drug Product Database Application Programming Interface (API) for querying specific information on drugs approved for use in Canada.">
+<meta name="description" content="This package provides a programmatic interface to Health Canada's Drug Product Database (DPD) REST API for querying information about drugs approved for use in Canada. More information on the DPD can be found in the API guide (&lt;https://health-products.canada.ca/api/documentation/dpd-documentation-en.html&gt;).">
+<meta property="og:description" content="This package provides a programmatic interface to Health Canada's Drug Product Database (DPD) REST API for querying information about drugs approved for use in Canada. More information on the DPD can be found in the API guide (&lt;https://health-products.canada.ca/api/documentation/dpd-documentation-en.html&gt;).">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">dpdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,11 +51,12 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>dpdr</code> is to provide a programmatic interface to the Health Canada Drug Product Database API.</p>
+<p>The goal of <code>dpdr</code> is to provide a programmatic interface to Health Canada’s Drug Product Database (DPD) REST API to query information about drugs approved for use in Canada.</p>
+<p>More information on the DPD can be found in the API guide (<a href="https://health-products.canada.ca/api/documentation/dpd-documentation-en.html" class="external-link uri">https://health-products.canada.ca/api/documentation/dpd-documentation-en.html</a>).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <code>dpdr</code> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of <code>dpdr</code> from <a href="https://github.com/mattwarkentin/dpdr" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mattwarkentin/dpdr"</span><span class="op">)</span></span></code></pre></div>
@@ -71,39 +72,39 @@
 </h3>
 <p>We can search for active ingredient information based on the drug code…</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_ai_id.html">dpd_ai_id</a></span><span class="op">(</span><span class="fl">48905</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_active_ingredient.html">dpd_active_ingredient</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">48905</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 23 × 6</span></span>
 <span><span class="co">#&gt;    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;        </span></span>
-<span><span class="co">#&gt;  1 ""          ""               48905 VITAMIN A           1250     UNIT         </span></span>
-<span><span class="co">#&gt;  2 ""          ""               48905 BETA-CAROTENE (PRO… 2916     UNIT         </span></span>
-<span><span class="co">#&gt;  3 ""          ""               48905 VITAMIN B1          2.25     MG           </span></span>
-<span><span class="co">#&gt;  4 ""          ""               48905 VITAMIN B2          3.75     MG           </span></span>
-<span><span class="co">#&gt;  5 ""          ""               48905 NICOTINAMIDE        20       MG           </span></span>
-<span><span class="co">#&gt;  6 ""          ""               48905 VITAMIN B6          5        MG           </span></span>
-<span><span class="co">#&gt;  7 ""          ""               48905 D-PANTOTHENIC ACID  10       MG           </span></span>
-<span><span class="co">#&gt;  8 ""          ""               48905 FOLIC ACID          0.2      MG           </span></span>
-<span><span class="co">#&gt;  9 ""          ""               48905 BIOTIN              75       MCG          </span></span>
-<span><span class="co">#&gt; 10 ""          ""               48905 VITAMIN B12         9        MCG          </span></span>
+<span><span class="co">#&gt;  1 ""          ""               48905 FOLIC ACID          0.2      MG           </span></span>
+<span><span class="co">#&gt;  2 ""          ""               48905 BIOTIN              75       MCG          </span></span>
+<span><span class="co">#&gt;  3 ""          ""               48905 VITAMIN B12         9        MCG          </span></span>
+<span><span class="co">#&gt;  4 ""          ""               48905 ASCORBIC ACID       125      MG           </span></span>
+<span><span class="co">#&gt;  5 ""          ""               48905 VITAMIN D2 (VITAMI… 200      UNIT         </span></span>
+<span><span class="co">#&gt;  6 ""          ""               48905 VITAMIN E           200      UNIT         </span></span>
+<span><span class="co">#&gt;  7 ""          ""               48905 CHOLINE             5        MG           </span></span>
+<span><span class="co">#&gt;  8 ""          ""               48905 INOSITOL            5        MG           </span></span>
+<span><span class="co">#&gt;  9 ""          ""               48905 COPPER (CUPRIC OXI… 1.5      MG           </span></span>
+<span><span class="co">#&gt; 10 ""          ""               48905 IODINE (POTASSIUM … 0.075    MG           </span></span>
 <span><span class="co">#&gt; # ℹ 13 more rows</span></span></code></pre></div>
 <p>Or based on the name of a drug.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_ai_id.html">dpd_ai_name</a></span><span class="op">(</span><span class="st">'afatinib'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_active_ingredient.html">dpd_active_ingredient</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"afatinib"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 12 × 6</span></span>
 <span><span class="co">#&gt;    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;        </span></span>
 <span><span class="co">#&gt;  1 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           </span></span>
-<span><span class="co">#&gt;  2 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           </span></span>
-<span><span class="co">#&gt;  3 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           </span></span>
-<span><span class="co">#&gt;  4 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           </span></span>
-<span><span class="co">#&gt;  5 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           </span></span>
-<span><span class="co">#&gt;  6 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           </span></span>
-<span><span class="co">#&gt;  7 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           </span></span>
-<span><span class="co">#&gt;  8 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           </span></span>
-<span><span class="co">#&gt;  9 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           </span></span>
-<span><span class="co">#&gt; 10 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           </span></span>
-<span><span class="co">#&gt; 11 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           </span></span>
-<span><span class="co">#&gt; 12 ""          ""              100637 AFATINIB (AFATINIB… 40       MG</span></span></code></pre></div>
+<span><span class="co">#&gt;  2 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           </span></span>
+<span><span class="co">#&gt;  3 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           </span></span>
+<span><span class="co">#&gt;  4 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           </span></span>
+<span><span class="co">#&gt;  5 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           </span></span>
+<span><span class="co">#&gt;  6 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           </span></span>
+<span><span class="co">#&gt;  7 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           </span></span>
+<span><span class="co">#&gt;  8 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           </span></span>
+<span><span class="co">#&gt;  9 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           </span></span>
+<span><span class="co">#&gt; 10 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           </span></span>
+<span><span class="co">#&gt; 11 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           </span></span>
+<span><span class="co">#&gt; 12 ""          ""               90028 AFATINIB (AFATINIB… 40       MG</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="company">Company<a class="anchor" aria-label="anchor" href="#company"></a>
@@ -121,9 +122,9 @@
 <div class="section level3">
 <h3 id="drug-product">Drug Product<a class="anchor" aria-label="anchor" href="#drug-product"></a>
 </h3>
-<p>The family of drug product functions allow us to query information about drug products based on the drug id or drug identification number (DIN).</p>
+<p>The family of drug product functions allow us to query information about drug products based on the drug product code or drug identification number (DIN).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_id.html">dpd_drug_id</a></span><span class="op">(</span><span class="fl">2049</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_product.html">dpd_drug_product</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">2049</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
 <span><span class="co">#&gt;   drug_code class_name drug_identification_number brand_name descriptor</span></span>
 <span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                      &lt;chr&gt;      &lt;chr&gt;     </span></span>
@@ -131,50 +132,41 @@
 <span><span class="co">#&gt; # ℹ 4 more variables: number_of_ais &lt;chr&gt;, ai_group_no &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   company_name &lt;chr&gt;, last_update_date &lt;chr&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_id.html">dpd_drug_din</a></span><span class="op">(</span><span class="st">'00326925'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_product.html">dpd_drug_product</a></span><span class="op">(</span>din <span class="op">=</span> <span class="st">'00326925'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
 <span><span class="co">#&gt;   drug_code class_name drug_identification_number brand_name descriptor</span></span>
 <span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                      &lt;chr&gt;      &lt;chr&gt;     </span></span>
 <span><span class="co">#&gt; 1      2049 Human      00326925                   SINEQUAN   ""        </span></span>
 <span><span class="co">#&gt; # ℹ 4 more variables: number_of_ais &lt;chr&gt;, ai_group_no &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   company_name &lt;chr&gt;, last_update_date &lt;chr&gt;</span></span></code></pre></div>
-<p>We can also find the list of drugs based on the drugs product status (see <code><a href="reference/dpd_drug_id.html">?dpd_drug_status</a></code> for more information).</p>
+<p>We can also find the list of drugs based on the drugs product status.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_id.html">dpd_drug_status</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,770 × 9</span></span>
-<span><span class="co">#&gt;    drug_code class_name drug_identification_number brand_name         descriptor</span></span>
-<span><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                      &lt;chr&gt;              &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt;  1       209 Human      00001686                   XYLOCAINE VISCOUS… ""        </span></span>
-<span><span class="co">#&gt;  2       157 Human      00010332                   ENTROPHEN 325MG T… ""        </span></span>
-<span><span class="co">#&gt;  3       468 Human      00010340                   ENTROPHEN ECT 650… ""        </span></span>
-<span><span class="co">#&gt;  4      1184 Human      00015547                   KEFLEX             ""        </span></span>
-<span><span class="co">#&gt;  5      1212 Human      00035645                   KEFLEX             ""        </span></span>
-<span><span class="co">#&gt;  6      1748 Human      00037958                   DEXTROSE INJECTIO… ""        </span></span>
-<span><span class="co">#&gt;  7      1751 Human      00038873                   5% DEXTROSE AND 0… ""        </span></span>
-<span><span class="co">#&gt;  8      2575 Human      00038881                   3.33% DEXTROSE AN… ""        </span></span>
-<span><span class="co">#&gt;  9      1548 Human      00039306                   LACTATE 1-2-3 INJ… ""        </span></span>
-<span><span class="co">#&gt; 10      1739 Human      00039489                   NORMOSOL-M &amp; 5% D… "SINGLE-D…</span></span>
-<span><span class="co">#&gt; # ℹ 2,760 more rows</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_product.html">dpd_drug_product</a></span><span class="op">(</span>status <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3,960 × 9</span></span>
+<span><span class="co">#&gt;    drug_code class_name   drug_identification_number brand_name       descriptor</span></span>
+<span><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;                      &lt;chr&gt;            &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt;  1      1705 Human        00270644                   SEPTRA PEDIATRI… ""        </span></span>
+<span><span class="co">#&gt;  2      3724 Veterinary   00455423                   COOL CAST        ""        </span></span>
+<span><span class="co">#&gt;  3      3312 Veterinary   00455431                   ICE O GEL        ""        </span></span>
+<span><span class="co">#&gt;  4      3297 Veterinary   00455458                   FREEZEX HOOF FR… ""        </span></span>
+<span><span class="co">#&gt;  5      6248 Veterinary   00651583                   WIND-AID         ""        </span></span>
+<span><span class="co">#&gt;  6      6249 Veterinary   00651591                   CHOATES VETERIN… ""        </span></span>
+<span><span class="co">#&gt;  7     45666 Human        00654493                   PMS-AMITRIPTYLI… ""        </span></span>
+<span><span class="co">#&gt;  8     21854 Disinfectant 01931814                   NUGEN R-82       ""        </span></span>
+<span><span class="co">#&gt;  9     21855 Disinfectant 01931822                   NUGEN S-18       ""        </span></span>
+<span><span class="co">#&gt; 10     25876 Disinfectant 02008459                   NUGEN S-21       ""        </span></span>
+<span><span class="co">#&gt; # ℹ 3,950 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 4 more variables: number_of_ais &lt;chr&gt;, ai_group_no &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   company_name &lt;chr&gt;, last_update_date &lt;chr&gt;</span></span></code></pre></div>
-<p>Lastly, we can find all possible DINs associated with a drug name.</p>
+<p>Or, we can find the list of drugs based on the brand names.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_id.html">dpd_drug_dins</a></span><span class="op">(</span><span class="st">'afatinib'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 12 × 9</span></span>
-<span><span class="co">#&gt;    drug_code class_name drug_identification_number brand_name      descriptor</span></span>
-<span><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                      &lt;chr&gt;           &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt;  1     90026 Human      02415666                   GIOTRIF         ""        </span></span>
-<span><span class="co">#&gt;  2     90027 Human      02415674                   GIOTRIF         ""        </span></span>
-<span><span class="co">#&gt;  3     90028 Human      02415682                   GIOTRIF         ""        </span></span>
-<span><span class="co">#&gt;  4    100203 Human      02512777                   SANDOZ AFATINIB ""        </span></span>
-<span><span class="co">#&gt;  5    100204 Human      02512785                   SANDOZ AFATINIB ""        </span></span>
-<span><span class="co">#&gt;  6    100205 Human      02512793                   SANDOZ AFATINIB ""        </span></span>
-<span><span class="co">#&gt;  7    100391 Human      02514591                   TEVA-AFATINIB   ""        </span></span>
-<span><span class="co">#&gt;  8    100392 Human      02514605                   TEVA-AFATINIB   ""        </span></span>
-<span><span class="co">#&gt;  9    100393 Human      02514613                   TEVA-AFATINIB   ""        </span></span>
-<span><span class="co">#&gt; 10    100635 Human      02517019                   MAR-AFATINIB    ""        </span></span>
-<span><span class="co">#&gt; 11    100636 Human      02517027                   MAR-AFATINIB    ""        </span></span>
-<span><span class="co">#&gt; 12    100637 Human      02517035                   MAR-AFATINIB    ""        </span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_drug_product.html">dpd_drug_product</a></span><span class="op">(</span>brandname <span class="op">=</span> <span class="st">"cidyl"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
+<span><span class="co">#&gt;   drug_code class_name drug_identification_number brand_name         descriptor</span></span>
+<span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                      &lt;chr&gt;              &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt; 1       225 Human      00000019                   PLACIDYL CAP 200MG ""        </span></span>
+<span><span class="co">#&gt; 2       226 Human      00000027                   PLACIDYL CAP 500MG ""        </span></span>
+<span><span class="co">#&gt; 3      1245 Human      00228893                   PLACIDYL CAP 750MG ""        </span></span>
 <span><span class="co">#&gt; # ℹ 4 more variables: number_of_ais &lt;chr&gt;, ai_group_no &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   company_name &lt;chr&gt;, last_update_date &lt;chr&gt;</span></span></code></pre></div>
 </div>
@@ -183,12 +175,12 @@
 </h3>
 <p>The dosage form is form of presentation in which the product is supplied. We can query dosage form based on the drug product code.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_dosage.html">dpd_dosage</a></span><span class="op">(</span><span class="fl">10846</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_dosage_form.html">dpd_dosage_form</a></span><span class="op">(</span><span class="fl">10846</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span><span class="co">#&gt;   drug_code pharmaceutical_form_code pharmaceutical_form_name</span></span>
 <span><span class="co">#&gt;       &lt;int&gt;                    &lt;int&gt; &lt;chr&gt;                   </span></span>
-<span><span class="co">#&gt; 1     10846                       43 Ointment                </span></span>
-<span><span class="co">#&gt; 2     10846                       34 Liquid</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     10846                       34 Liquid                  </span></span>
+<span><span class="co">#&gt; 2     10846                       43 Ointment</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="packaging">Packaging<a class="anchor" aria-label="anchor" href="#packaging"></a>
@@ -197,9 +189,9 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_packaging.html">dpd_packaging</a></span><span class="op">(</span><span class="fl">11685</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
-<span><span class="co">#&gt;   drug_code upc          package_size_unit package_type package_size</span></span>
-<span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;             &lt;chr&gt;        &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1     11685 055599047240 Ea                Blister Pack 24          </span></span>
+<span><span class="co">#&gt;   drug_code upc   package_size_unit package_type package_size</span></span>
+<span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;        &lt;chr&gt;       </span></span>
+<span><span class="co">#&gt; 1     11685 ""    ""                ""           ""          </span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: product_information &lt;chr&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -207,7 +199,7 @@
 </h3>
 <p>We can query the standard to which the drug product is manufactured and represented, based on the drug product code.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_pharm_std.html">dpd_pharm_std</a></span><span class="op">(</span><span class="fl">11534</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_pharm_standard.html">dpd_pharm_standard</a></span><span class="op">(</span><span class="fl">11534</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   drug_code pharmaceutical_std</span></span>
 <span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;             </span></span>
@@ -218,15 +210,15 @@
 </h3>
 <p>We can query the route of administration for a drug based on the drug product code.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_route.html">dpd_route</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_route_of_admin.html">dpd_route_of_admin</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 3</span></span>
 <span><span class="co">#&gt;   drug_code route_of_administration_code route_of_administration_name</span></span>
 <span><span class="co">#&gt;       &lt;int&gt;                        &lt;int&gt; &lt;chr&gt;                       </span></span>
-<span><span class="co">#&gt; 1         3                           34 Intrapleural                </span></span>
-<span><span class="co">#&gt; 2         3                           10 Intra-Articular             </span></span>
-<span><span class="co">#&gt; 3         3                           33 Intraperitoneal             </span></span>
-<span><span class="co">#&gt; 4         3                           49 Intravenous                 </span></span>
-<span><span class="co">#&gt; 5         3                           31 Intrathecal</span></span></code></pre></div>
+<span><span class="co">#&gt; 1         3                           33 Intraperitoneal             </span></span>
+<span><span class="co">#&gt; 2         3                           49 Intravenous                 </span></span>
+<span><span class="co">#&gt; 3         3                           31 Intrathecal                 </span></span>
+<span><span class="co">#&gt; 4         3                           34 Intrapleural                </span></span>
+<span><span class="co">#&gt; 5         3                           10 Intra-Articular</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="schedule">Schedule<a class="anchor" aria-label="anchor" href="#schedule"></a>
@@ -237,19 +229,29 @@
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
 <span><span class="co">#&gt;   drug_code schedule_name</span></span>
 <span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;        </span></span>
-<span><span class="co">#&gt; 1     10687 Prescription </span></span>
-<span><span class="co">#&gt; 2     10687 Schedule D</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     10687 SCHEDULE D   </span></span>
+<span><span class="co">#&gt; 2     10687 PRESCRIPTION</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="product-status">Product Status<a class="anchor" aria-label="anchor" href="#product-status"></a>
 </h3>
-<p>We can query the status of a drug product based on the drug product code.</p>
+<p>We can query the product status of a drug product.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_status.html">dpd_status</a></span><span class="op">(</span><span class="fl">10229</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 7</span></span>
-<span><span class="co">#&gt;   drug_code status        history_date original_market_date external_status_code</span></span>
-<span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;                               &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1     10229 Cancelled Po… 1997-10-15   1989-12-31                              4</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_product_status.html">dpd_product_status</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 57,788 × 7</span></span>
+<span><span class="co">#&gt;    drug_code status       history_date original_market_date external_status_code</span></span>
+<span><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                               &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1      4264 Cancelled P… 1998-09-25   1978-12-31                              4</span></span>
+<span><span class="co">#&gt;  2      3460 Cancelled P… 1996-09-09   1979-12-31                              4</span></span>
+<span><span class="co">#&gt;  3      3466 Cancelled P… 2019-05-27   1979-12-31                              4</span></span>
+<span><span class="co">#&gt;  4      3776 Cancelled P… 1998-09-25   1980-12-31                              4</span></span>
+<span><span class="co">#&gt;  5      4343 Cancelled P… 1997-05-30   1981-12-31                              4</span></span>
+<span><span class="co">#&gt;  6      3797 Cancelled (… 2023-01-09   1979-12-31                              9</span></span>
+<span><span class="co">#&gt;  7      3509 Cancelled P… 2004-08-16   1979-12-31                              4</span></span>
+<span><span class="co">#&gt;  8      4079 Cancelled P… 1997-08-13   1963-12-31                              4</span></span>
+<span><span class="co">#&gt;  9      4083 Cancelled P… 1998-07-09   1981-12-31                              4</span></span>
+<span><span class="co">#&gt; 10      4084 Cancelled P… 2001-08-02   1963-12-31                              4</span></span>
+<span><span class="co">#&gt; # ℹ 57,778 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 2 more variables: expiration_date &lt;chr&gt;, lot_number &lt;chr&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -257,7 +259,7 @@
 </h3>
 <p>We can query the Therapeutic Class according to a drugs main therapeutic use.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_class.html">dpd_class</a></span><span class="op">(</span><span class="fl">10564</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dpd_therapeutic_class.html">dpd_therapeutic_class</a></span><span class="op">(</span><span class="fl">10564</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 5</span></span>
 <span><span class="co">#&gt;   drug_code tc_atc_number tc_atc                  tc_ahfs_number tc_ahfs</span></span>
 <span><span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                   &lt;chr&gt;          &lt;chr&gt;  </span></span>
@@ -316,7 +318,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Matthew T. Warkentin <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-8730-3511" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Matthew T. Warkentin <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0001-8730-3511" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -337,7 +339,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
