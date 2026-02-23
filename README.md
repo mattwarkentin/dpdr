@@ -8,8 +8,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `dpdr` is to provide a programmatic interface to the Health
-Canada Drug Product Database API.
+The goal of `dpdr` is to provide a programmatic interface to Health
+Canada’s Drug Product Database (DPD) REST API to query information about
+drugs approved for use in Canada.
+
+More information on the DPD can be found in the API guide
+(<https://health-products.canada.ca/api/documentation/dpd-documentation-en.html>).
 
 ## Installation
 
@@ -61,17 +65,17 @@ dpd_active_ingredient(name = "afatinib")
 #>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
 #>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
 #>  1 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
-#>  2 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
-#>  3 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           
-#>  4 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           
-#>  5 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
-#>  6 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
+#>  2 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
+#>  3 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
+#>  4 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
+#>  5 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
+#>  6 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
 #>  7 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
-#>  8 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
-#>  9 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
-#> 10 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
+#>  8 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  9 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           
+#> 10 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
 #> 11 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
-#> 12 ""          ""              100391 AFATINIB (AFATINIB… 20       MG
+#> 12 ""          ""               90028 AFATINIB (AFATINIB… 40       MG
 ```
 
 ### Company
@@ -201,8 +205,8 @@ dpd_route_of_admin(3)
 #> # A tibble: 5 × 3
 #>   drug_code route_of_administration_code route_of_administration_name
 #>       <int>                        <int> <chr>                       
-#> 1         3                           49 Intravenous                 
-#> 2         3                           33 Intraperitoneal             
+#> 1         3                           33 Intraperitoneal             
+#> 2         3                           49 Intravenous                 
 #> 3         3                           31 Intrathecal                 
 #> 4         3                           34 Intrapleural                
 #> 5         3                           10 Intra-Articular
@@ -231,16 +235,16 @@ dpd_product_status()
 #> # A tibble: 57,788 × 7
 #>    drug_code status       history_date original_market_date external_status_code
 #>        <int> <chr>        <chr>        <chr>                               <int>
-#>  1      3109 Cancelled P… 1996-09-10   1978-12-31                              4
-#>  2      2550 Cancelled P… 2009-08-26   1976-12-31                              4
-#>  3      2570 Marketed     2017-07-13   1977-12-31                              2
-#>  4      3042 Marketed     2005-08-09   1978-12-31                              2
-#>  5      2905 Cancelled P… 2002-07-29   1978-12-31                              4
-#>  6      2907 Cancelled P… 2000-07-17   1978-12-31                              4
-#>  7      2914 Cancelled P… 1997-08-14   1978-12-31                              4
-#>  8      2918 Cancelled P… 2015-10-26   1978-12-31                              4
-#>  9      3126 Cancelled P… 1997-08-18   1978-12-31                              4
-#> 10      6392 Dormant      2018-08-30   1985-12-31                              6
+#>  1      4264 Cancelled P… 1998-09-25   1978-12-31                              4
+#>  2      3460 Cancelled P… 1996-09-09   1979-12-31                              4
+#>  3      3466 Cancelled P… 2019-05-27   1979-12-31                              4
+#>  4      3776 Cancelled P… 1998-09-25   1980-12-31                              4
+#>  5      4343 Cancelled P… 1997-05-30   1981-12-31                              4
+#>  6      3797 Cancelled (… 2023-01-09   1979-12-31                              9
+#>  7      3509 Cancelled P… 2004-08-16   1979-12-31                              4
+#>  8      4079 Cancelled P… 1997-08-13   1963-12-31                              4
+#>  9      4083 Cancelled P… 1998-07-09   1981-12-31                              4
+#> 10      4084 Cancelled P… 2001-08-02   1963-12-31                              4
 #> # ℹ 57,778 more rows
 #> # ℹ 2 more variables: expiration_date <chr>, lot_number <chr>
 ```

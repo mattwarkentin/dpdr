@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `dpdr` is to provide a programmatic interface to the Health Canada Drug Product Database API.
+The goal of `dpdr` is to provide a programmatic interface to Health Canada's Drug Product Database (DPD) REST API to query information about drugs approved for use in Canada. 
+
+More information on the DPD can be found in the API guide (<https://health-products.canada.ca/api/documentation/dpd-documentation-en.html>).
 
 ## Installation
 

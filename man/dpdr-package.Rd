@@ -6,7 +6,7 @@
 \alias{dpdr-package}
 \title{dpdr: Interface to Health Canada Drug Product Database API}
 \description{
-This package provides a programmatic interface to the Health Canada Drug Product Database REST API for querying specific information on drugs approved for use in Canada.
+This package provides a programmatic interface to Health Canada's Drug Product Database (DPD) REST API for querying information about drugs approved for use in Canada. More information on the DPD can be found in the API guide (\url{https://health-products.canada.ca/api/documentation/dpd-documentation-en.html}).
 }
 \seealso{
 Useful links:
@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Matthew T. Warkentin \email{matthew.warkentin@ucalgary.ca} (\href{https://orcid.org/0000-0001-8730-3511}{ORCID})
+\strong{Maintainer}: Matthew T. Warkentin \email{matthew.warkentin@ucalgary.ca} (\href{https://orcid.org/0000-0001-8730-3511}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
