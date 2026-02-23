@@ -22,7 +22,7 @@ The goal of `dpdr` is to provide a programmatic interface to the Health Canada D
 
 ## Installation
 
-You can install the development version of `dpdr` from [GitHub](https://github.com/) with:
+You can install the development version of `dpdr` from [GitHub](https://github.com/mattwarkentin/dpdr) with:
 
 ``` r
 # install.packages("remotes")
@@ -42,13 +42,13 @@ library(dpdr)
 We can search for active ingredient information based on the drug code...
 
 ```{r}
-dpd_ai_id(48905)
+dpd_active_ingredient(id = 48905)
 ```
 
 Or based on the name of a drug.
 
 ```{r}
-dpd_ai_name('afatinib')
+dpd_active_ingredient(name = "afatinib")
 ```
 
 ### Company
@@ -61,26 +61,26 @@ dpd_company(10825)
 
 ### Drug Product
 
-The family of drug product functions allow us to query information about drug products based on the drug id or drug identification number (DIN).
+The family of drug product functions allow us to query information about drug products based on the drug product code or drug identification number (DIN).
 
 ```{r}
-dpd_drug_id(2049)
+dpd_drug_product(id = 2049)
 ```
 
 ```{r}
-dpd_drug_din('00326925')
+dpd_drug_product(din = '00326925')
 ```
 
-We can also find the list of drugs based on the drugs product status (see `?dpd_drug_status` for more information).
+We can also find the list of drugs based on the drugs product status.
 
 ```{r}
-dpd_drug_status(6)
+dpd_drug_product(status = 1)
 ```
 
-Lastly, we can find all possible DINs associated with a drug name.
+Or, we can find the list of drugs based on the brand names.
 
 ```{r}
-dpd_drug_dins('afatinib')
+dpd_drug_product(brandname = "cidyl")
 ```
 
 ### Dosage Form
@@ -88,7 +88,7 @@ dpd_drug_dins('afatinib')
 The dosage form is form of presentation in which the product is supplied. We can query dosage form based on the drug product code.
 
 ```{r}
-dpd_dosage(10846)
+dpd_dosage_form(10846)
 ```
 
 ### Packaging
@@ -104,7 +104,7 @@ dpd_packaging(11685)
 We can query the standard to which the drug product is manufactured and represented, based on the drug product code.
 
 ```{r}
-dpd_pharm_std(11534)
+dpd_pharm_standard(11534)
 ```
 
 ### Route of Administration
@@ -112,7 +112,7 @@ dpd_pharm_std(11534)
 We can query the route of administration for a drug based on the drug product code.
 
 ```{r}
-dpd_route(3)
+dpd_route_of_admin(3)
 ```
 
 ### Schedule
@@ -125,10 +125,10 @@ dpd_schedule(10687)
 
 ### Product Status
 
-We can query the status of a drug product based on the drug product code.
+We can query the product status of a drug product.
 
 ```{r}
-dpd_status(10229)
+dpd_product_status()
 ```
 
 ### Therapeutic Class
@@ -136,7 +136,7 @@ dpd_status(10229)
 We can query the Therapeutic Class according to a drugs main therapeutic use.
 
 ```{r}
-dpd_class(10564)
+dpd_therapeutic_class(10564)
 ```
 
 ### Veterinary Species
