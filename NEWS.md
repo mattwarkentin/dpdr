@@ -1,3 +1,3 @@
-# dpdr 0.0.0.9000
+# dpdr 0.1.0
 
-* Under development.
+* Initial public release.
