@@ -17,6 +17,7 @@ Imports:
     glue,
     httr2,
     jsonlite,
+    memoise,
     rlang,
     tibble
 URL: https://github.com/mattwarkentin/dpdr,
