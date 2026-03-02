@@ -114,20 +114,20 @@ dpd_drug_product(brandname = "cidyl")
 #> #   company_name <chr>, last_update_date <chr>
 
 dpd_drug_product(status = 1)
-#> # A tibble: 3,960 × 9
+#> # A tibble: 3,970 × 9
 #>    drug_code class_name   drug_identification_number brand_name       descriptor
 #>        <int> <chr>        <chr>                      <chr>            <chr>     
-#>  1      1705 Human        00270644                   SEPTRA PEDIATRI… ""        
-#>  2      3724 Veterinary   00455423                   COOL CAST        ""        
-#>  3      3312 Veterinary   00455431                   ICE O GEL        ""        
-#>  4      3297 Veterinary   00455458                   FREEZEX HOOF FR… ""        
-#>  5      6248 Veterinary   00651583                   WIND-AID         ""        
-#>  6      6249 Veterinary   00651591                   CHOATES VETERIN… ""        
-#>  7     45666 Human        00654493                   PMS-AMITRIPTYLI… ""        
-#>  8     21854 Disinfectant 01931814                   NUGEN R-82       ""        
-#>  9     21855 Disinfectant 01931822                   NUGEN S-18       ""        
-#> 10     25876 Disinfectant 02008459                   NUGEN S-21       ""        
-#> # ℹ 3,950 more rows
+#>  1      3724 Veterinary   00455423                   COOL CAST        ""        
+#>  2      3312 Veterinary   00455431                   ICE O GEL        ""        
+#>  3      3297 Veterinary   00455458                   FREEZEX HOOF FR… ""        
+#>  4      6248 Veterinary   00651583                   WIND-AID         ""        
+#>  5      6249 Veterinary   00651591                   CHOATES VETERIN… ""        
+#>  6     45666 Human        00654493                   PMS-AMITRIPTYLI… ""        
+#>  7     21854 Disinfectant 01931814                   NUGEN R-82       ""        
+#>  8     21855 Disinfectant 01931822                   NUGEN S-18       ""        
+#>  9     25876 Disinfectant 02008459                   NUGEN S-21       ""        
+#> 10     25882 Disinfectant 02008505                   NUGEN S-38       ""        
+#> # ℹ 3,960 more rows
 #> # ℹ 4 more variables: number_of_ais <chr>, ai_group_no <chr>,
 #> #   company_name <chr>, last_update_date <chr>
 ```

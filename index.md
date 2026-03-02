@@ -9,6 +9,12 @@ More information on the DPD can be found in the API guide
 
 ## Installation
 
+You can install the CRAN version of `dpdr` with:
+
+``` r
+install.packages("dpdr")
+```
+
 You can install the development version of `dpdr` from
 [GitHub](https://github.com/mattwarkentin/dpdr) with:
 
@@ -36,16 +42,16 @@ dpd_active_ingredient(id = 48905)
 #> # A tibble: 23 × 6
 #>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
 #>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
-#>  1 ""          ""               48905 FOLIC ACID          0.2      MG           
-#>  2 ""          ""               48905 BIOTIN              75       MCG          
-#>  3 ""          ""               48905 VITAMIN B12         9        MCG          
-#>  4 ""          ""               48905 ASCORBIC ACID       125      MG           
-#>  5 ""          ""               48905 VITAMIN D2 (VITAMI… 200      UNIT         
-#>  6 ""          ""               48905 VITAMIN E           200      UNIT         
-#>  7 ""          ""               48905 CHOLINE             5        MG           
-#>  8 ""          ""               48905 INOSITOL            5        MG           
-#>  9 ""          ""               48905 COPPER (CUPRIC OXI… 1.5      MG           
-#> 10 ""          ""               48905 IODINE (POTASSIUM … 0.075    MG           
+#>  1 ""          ""               48905 VITAMIN A           1250     UNIT         
+#>  2 ""          ""               48905 BETA-CAROTENE (PRO… 2916     UNIT         
+#>  3 ""          ""               48905 VITAMIN B1          2.25     MG           
+#>  4 ""          ""               48905 VITAMIN B2          3.75     MG           
+#>  5 ""          ""               48905 NICOTINAMIDE        20       MG           
+#>  6 ""          ""               48905 VITAMIN B6          5        MG           
+#>  7 ""          ""               48905 D-PANTOTHENIC ACID  10       MG           
+#>  8 ""          ""               48905 FOLIC ACID          0.2      MG           
+#>  9 ""          ""               48905 BIOTIN              75       MCG          
+#> 10 ""          ""               48905 VITAMIN B12         9        MCG          
 #> # ℹ 13 more rows
 ```
 
@@ -56,18 +62,18 @@ dpd_active_ingredient(name = "afatinib")
 #> # A tibble: 12 × 6
 #>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
 #>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
-#>  1 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
-#>  2 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
-#>  3 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
-#>  4 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
-#>  5 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
-#>  6 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
-#>  7 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
-#>  8 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  1 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
+#>  2 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
+#>  3 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           
+#>  4 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
+#>  5 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
+#>  6 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  7 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
+#>  8 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
 #>  9 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           
-#> 10 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
-#> 11 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
-#> 12 ""          ""               90028 AFATINIB (AFATINIB… 40       MG
+#> 10 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
+#> 11 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
+#> 12 ""          ""              100636 AFATINIB (AFATINIB… 30       MG
 ```
 
 ### Company
@@ -114,20 +120,20 @@ We can also find the list of drugs based on the drugs product status.
 
 ``` r
 dpd_drug_product(status = 1)
-#> # A tibble: 3,960 × 9
+#> # A tibble: 3,970 × 9
 #>    drug_code class_name   drug_identification_number brand_name       descriptor
 #>        <int> <chr>        <chr>                      <chr>            <chr>     
-#>  1      1705 Human        00270644                   SEPTRA PEDIATRI… ""        
-#>  2      3724 Veterinary   00455423                   COOL CAST        ""        
-#>  3      3312 Veterinary   00455431                   ICE O GEL        ""        
-#>  4      3297 Veterinary   00455458                   FREEZEX HOOF FR… ""        
-#>  5      6248 Veterinary   00651583                   WIND-AID         ""        
-#>  6      6249 Veterinary   00651591                   CHOATES VETERIN… ""        
-#>  7     45666 Human        00654493                   PMS-AMITRIPTYLI… ""        
-#>  8     21854 Disinfectant 01931814                   NUGEN R-82       ""        
-#>  9     21855 Disinfectant 01931822                   NUGEN S-18       ""        
-#> 10     25876 Disinfectant 02008459                   NUGEN S-21       ""        
-#> # ℹ 3,950 more rows
+#>  1      3724 Veterinary   00455423                   COOL CAST        ""        
+#>  2      3312 Veterinary   00455431                   ICE O GEL        ""        
+#>  3      3297 Veterinary   00455458                   FREEZEX HOOF FR… ""        
+#>  4      6248 Veterinary   00651583                   WIND-AID         ""        
+#>  5      6249 Veterinary   00651591                   CHOATES VETERIN… ""        
+#>  6     45666 Human        00654493                   PMS-AMITRIPTYLI… ""        
+#>  7     21854 Disinfectant 01931814                   NUGEN R-82       ""        
+#>  8     21855 Disinfectant 01931822                   NUGEN S-18       ""        
+#>  9     25876 Disinfectant 02008459                   NUGEN S-21       ""        
+#> 10     25882 Disinfectant 02008505                   NUGEN S-38       ""        
+#> # ℹ 3,960 more rows
 #> # ℹ 4 more variables: number_of_ais <chr>, ai_group_no <chr>,
 #> #   company_name <chr>, last_update_date <chr>
 ```
@@ -226,20 +232,20 @@ We can query the product status of a drug product.
 
 ``` r
 dpd_product_status()
-#> # A tibble: 57,788 × 7
-#>    drug_code status       history_date original_market_date external_status_code
-#>        <int> <chr>        <chr>        <chr>                               <int>
-#>  1      4264 Cancelled P… 1998-09-25   1978-12-31                              4
-#>  2      3460 Cancelled P… 1996-09-09   1979-12-31                              4
-#>  3      3466 Cancelled P… 2019-05-27   1979-12-31                              4
-#>  4      3776 Cancelled P… 1998-09-25   1980-12-31                              4
-#>  5      4343 Cancelled P… 1997-05-30   1981-12-31                              4
-#>  6      3797 Cancelled (… 2023-01-09   1979-12-31                              9
-#>  7      3509 Cancelled P… 2004-08-16   1979-12-31                              4
-#>  8      4079 Cancelled P… 1997-08-13   1963-12-31                              4
-#>  9      4083 Cancelled P… 1998-07-09   1981-12-31                              4
-#> 10      4084 Cancelled P… 2001-08-02   1963-12-31                              4
-#> # ℹ 57,778 more rows
+#> # A tibble: 57,818 × 7
+#>    drug_code status   history_date original_market_date external_status_code
+#>        <int> <chr>    <chr>        <chr>                               <int>
+#>  1     89155 Approved 2013-05-23   <NA>                                    1
+#>  2     89186 Approved 2013-05-30   <NA>                                    1
+#>  3     88986 Approved 2013-04-22   <NA>                                    1
+#>  4     89018 Approved 2013-05-01   <NA>                                    1
+#>  5     88575 Approved 2013-01-23   <NA>                                    1
+#>  6     88859 Approved 2017-05-17   <NA>                                    1
+#>  7     89101 Approved 2013-05-08   <NA>                                    1
+#>  8     88230 Approved 2014-09-10   <NA>                                    1
+#>  9     88324 Approved 2016-01-18   <NA>                                    1
+#> 10     88317 Approved 2017-02-16   <NA>                                    1
+#> # ℹ 57,808 more rows
 #> # ℹ 2 more variables: expiration_date <chr>, lot_number <chr>
 ```
 

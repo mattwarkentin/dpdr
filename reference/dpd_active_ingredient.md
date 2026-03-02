@@ -67,32 +67,32 @@ dpd_active_ingredient(id = 48905)
 #> # A tibble: 23 × 6
 #>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
 #>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
-#>  1 ""          ""               48905 FOLIC ACID          0.2      MG           
-#>  2 ""          ""               48905 BIOTIN              75       MCG          
-#>  3 ""          ""               48905 VITAMIN B12         9        MCG          
-#>  4 ""          ""               48905 ASCORBIC ACID       125      MG           
-#>  5 ""          ""               48905 VITAMIN D2 (VITAMI… 200      UNIT         
-#>  6 ""          ""               48905 VITAMIN E           200      UNIT         
-#>  7 ""          ""               48905 CHOLINE             5        MG           
-#>  8 ""          ""               48905 INOSITOL            5        MG           
-#>  9 ""          ""               48905 COPPER (CUPRIC OXI… 1.5      MG           
-#> 10 ""          ""               48905 IODINE (POTASSIUM … 0.075    MG           
+#>  1 ""          ""               48905 VITAMIN A           1250     UNIT         
+#>  2 ""          ""               48905 BETA-CAROTENE (PRO… 2916     UNIT         
+#>  3 ""          ""               48905 VITAMIN B1          2.25     MG           
+#>  4 ""          ""               48905 VITAMIN B2          3.75     MG           
+#>  5 ""          ""               48905 NICOTINAMIDE        20       MG           
+#>  6 ""          ""               48905 VITAMIN B6          5        MG           
+#>  7 ""          ""               48905 D-PANTOTHENIC ACID  10       MG           
+#>  8 ""          ""               48905 FOLIC ACID          0.2      MG           
+#>  9 ""          ""               48905 BIOTIN              75       MCG          
+#> 10 ""          ""               48905 VITAMIN B12         9        MCG          
 #> # ℹ 13 more rows
 
 dpd_active_ingredient(name = "afatinib")
 #> # A tibble: 12 × 6
 #>    dosage_unit dosage_value drug_code ingredient_name     strength strength_unit
 #>    <chr>       <chr>            <int> <chr>               <chr>    <chr>        
-#>  1 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
-#>  2 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
-#>  3 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
-#>  4 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
-#>  5 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
-#>  6 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
-#>  7 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
-#>  8 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  1 ""          ""               90027 AFATINIB (AFATINIB… 30       MG           
+#>  2 ""          ""               90026 AFATINIB (AFATINIB… 20       MG           
+#>  3 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           
+#>  4 ""          ""              100203 AFATINIB (AFATINIB… 20       MG           
+#>  5 ""          ""              100392 AFATINIB (AFATINIB… 30       MG           
+#>  6 ""          ""              100205 AFATINIB (AFATINIB… 40       MG           
+#>  7 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
+#>  8 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
 #>  9 ""          ""              100204 AFATINIB (AFATINIB… 30       MG           
-#> 10 ""          ""              100391 AFATINIB (AFATINIB… 20       MG           
-#> 11 ""          ""              100635 AFATINIB (AFATINIB… 20       MG           
-#> 12 ""          ""               90028 AFATINIB (AFATINIB… 40       MG           
+#> 10 ""          ""              100393 AFATINIB (AFATINIB… 40       MG           
+#> 11 ""          ""              100637 AFATINIB (AFATINIB… 40       MG           
+#> 12 ""          ""              100636 AFATINIB (AFATINIB… 30       MG           
 ```
