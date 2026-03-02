@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 # dpdr
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/dpdr)](https://CRAN.R-project.org/package=dpdr)
 [![R-CMD-check](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattwarkentin/dpdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -23,6 +23,12 @@ The goal of `dpdr` is to provide a programmatic interface to Health Canada's Dru
 More information on the DPD can be found in the API guide (<https://health-products.canada.ca/api/documentation/dpd-documentation-en.html>).
 
 ## Installation
+
+You can install the CRAN version of `dpdr` with:
+
+``` r
+install.packages("dpdr")
+```
 
 You can install the development version of `dpdr` from [GitHub](https://github.com/mattwarkentin/dpdr) with:
 
